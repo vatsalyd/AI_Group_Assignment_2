@@ -118,4 +118,4 @@ Use `screenshots/README.md` to capture genuine execution screenshots.
 ## Runtime reference
 
 [SWI-Prolog downloads](https://www.swi-prolog.org/download/stable) provides
-the runtime. The verified run used SWI-Prolog 10.0.2 for x64 Windows.
+the runtime. The verified run used SWI-Prolog version 10.0.2 for x64-win64.

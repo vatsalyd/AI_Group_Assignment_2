@@ -68,10 +68,10 @@ of executed actions are identical here because each plan is sequential.
 
 | Scenario | Search | Plan length / total actions | Nodes expanded | Search time (s) | Planning time (s) |
 | --- | --- | --- | --- | --- | --- |
-| original | gbfs | 30 | 45 | 0.020313 | 0.034690 |
-| original | astar | 25 | 1327 | 0.049267 | 0.063923 |
-| extended | gbfs | 44 | 91 | 0.059906 | 0.073669 |
-| extended | astar | 40 | 153190 | 7.030539 | 7.046653 |
+| original | gbfs | 30 | 45 | 0.020273 | 0.033665 |
+| original | astar | 25 | 1327 | 0.045725 | 0.058840 |
+| extended | gbfs | 44 | 91 | 0.059156 | 0.073519 |
+| extended | astar | 40 | 153190 | 8.133757 | 8.147261 |
 
 ### Complete action sequences
 
