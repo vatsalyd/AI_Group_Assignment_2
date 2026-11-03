@@ -1,0 +1,97 @@
+﻿ROYAL ARCHIVE: RESOLUTION REFUTATION
+Goal: trusted(mira)
+Negated goal: not(trusted(mira))
+
+Stage: fol
+all(A,all(B,implies(and(archivist(A),verifies(A,B)),trusted(A))))
+all(A,all(B,implies(and(trusted(A),and(access(A,B),sealed(B))),permitted(A,B))))
+all(A,all(B,implies(and(inspects(A,B),finds_mark(A,B)),verifies(A,B))))
+all(A,implies(stored(A,royal_archive),sealed(A)))
+stored(scroll_7,royal_archive)
+access(mira,scroll_7)
+and(inspects(mira,scroll_7),finds_mark(mira,scroll_7))
+archivist(mira)
+not(trusted(mira))
+
+Stage: implication_removal
+all(A,all(B,or(not(and(archivist(A),verifies(A,B))),trusted(A))))
+all(A,all(B,or(not(and(trusted(A),and(access(A,B),sealed(B)))),permitted(A,B))))
+all(A,all(B,or(not(and(inspects(A,B),finds_mark(A,B))),verifies(A,B))))
+all(A,or(not(stored(A,royal_archive)),sealed(A)))
+stored(scroll_7,royal_archive)
+access(mira,scroll_7)
+and(inspects(mira,scroll_7),finds_mark(mira,scroll_7))
+archivist(mira)
+not(trusted(mira))
+
+Stage: negation_movement
+all(A,all(B,or(or(not(archivist(A)),not(verifies(A,B))),trusted(A))))
+all(A,all(B,or(or(not(trusted(A)),or(not(access(A,B)),not(sealed(B)))),permitted(A,B))))
+all(A,all(B,or(or(not(inspects(A,B)),not(finds_mark(A,B))),verifies(A,B))))
+all(A,or(not(stored(A,royal_archive)),sealed(A)))
+stored(scroll_7,royal_archive)
+access(mira,scroll_7)
+and(inspects(mira,scroll_7),finds_mark(mira,scroll_7))
+archivist(mira)
+not(trusted(mira))
+
+Stage: standardization
+all(A,all(B,or(or(not(archivist(A)),not(verifies(A,B))),trusted(A))))
+all(A,all(B,or(or(not(trusted(A)),or(not(access(A,B)),not(sealed(B)))),permitted(A,B))))
+all(A,all(B,or(or(not(inspects(A,B)),not(finds_mark(A,B))),verifies(A,B))))
+all(A,or(not(stored(A,royal_archive)),sealed(A)))
+stored(scroll_7,royal_archive)
+access(mira,scroll_7)
+and(inspects(mira,scroll_7),finds_mark(mira,scroll_7))
+archivist(mira)
+not(trusted(mira))
+
+Stage: skolemization_and_universal_removal
+or(or(not(archivist(A)),not(verifies(A,B))),trusted(A))
+or(or(not(trusted(A)),or(not(access(A,B)),not(sealed(B)))),permitted(A,B))
+or(or(not(inspects(A,B)),not(finds_mark(A,B))),verifies(A,B))
+or(not(stored(A,royal_archive)),sealed(A))
+stored(scroll_7,royal_archive)
+access(mira,scroll_7)
+and(inspects(mira,scroll_7),finds_mark(mira,scroll_7))
+archivist(mira)
+not(trusted(mira))
+No existential quantifiers: no Skolem symbols are needed.
+
+CNF CLAUSES
+C1: [neg(archivist(A)),neg(verifies(A,B)),pos(trusted(A))]
+C2: [neg(sealed(A)),neg(trusted(B)),neg(access(B,A)),pos(permitted(B,A))]
+C3: [neg(finds_mark(A,B)),neg(inspects(A,B)),pos(verifies(A,B))]
+C4: [neg(stored(A,royal_archive)),pos(sealed(A))]
+C5: [pos(stored(scroll_7,royal_archive))]
+C6: [pos(access(mira,scroll_7))]
+C7: [pos(inspects(mira,scroll_7))]
+C8: [pos(finds_mark(mira,scroll_7))]
+C9: [pos(archivist(mira))]
+C10: [neg(trusted(mira))]
+
+RESOLUTION TRACE
+C11 = resolve(C1, C10)
+  pivot before unification: trusted(A)-trusted(mira)
+  variable values before-after: [A,B]-[mira,C]
+  resolvent: [neg(archivist(mira)),neg(verifies(mira,A))]
+C12 = resolve(C9, C11)
+  pivot before unification: archivist(mira)-archivist(mira)
+  variable values before-after: [A]-[B]
+  resolvent: [neg(verifies(mira,A))]
+C13 = resolve(C3, C12)
+  pivot before unification: verifies(A,B)-verifies(mira,C)
+  variable values before-after: [A,B,C]-[mira,D,D]
+  resolvent: [neg(finds_mark(mira,A)),neg(inspects(mira,A))]
+C14 = resolve(C7, C13)
+  pivot before unification: inspects(mira,scroll_7)-inspects(mira,A)
+  variable values before-after: [A]-[scroll_7]
+  resolvent: [neg(finds_mark(mira,scroll_7))]
+C15 = resolve(C8, C14)
+  pivot before unification: finds_mark(mira,scroll_7)-finds_mark(mira,scroll_7)
+  variable values before-after: []-[]
+  resolvent: []
+
+C15 = [] (empty clause). Contradiction derived.
+VERIFIED: trusted(mira) follows from the knowledge base.
+SELF-TEST PASS: replayed proof, no assumed goal, unification, required facts.
