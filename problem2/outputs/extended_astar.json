@@ -14,9 +14,9 @@
     "collect-hard": 3
   },
   "nodes_expanded_including_goal": 153190,
-  "search_wall_seconds": 6.911383499973454,
-  "search_cpu_seconds": 6.890625,
-  "planning_wall_seconds": 6.924372499983292,
+  "search_wall_seconds": 7.0305394000024535,
+  "search_cpu_seconds": 7.0,
+  "planning_wall_seconds": 7.046653099998366,
   "grounded_operators": 216,
   "validated": true,
   "goal_facts": [

@@ -1,4 +1,4 @@
-﻿ROYAL ARCHIVE: RESOLUTION REFUTATION
+ROYAL ARCHIVE: RESOLUTION REFUTATION
 Goal: trusted(mira)
 Negated goal: not(trusted(mira))
 
