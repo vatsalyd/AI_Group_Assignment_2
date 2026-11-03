@@ -5,6 +5,14 @@ Run the commands below in a visible terminal, check success, then use the
 Windows Snipping Tool manually. Include the command, readable output, and
 application window. Save PNG files under the names listed here.
 
+For an interactive sequence of the same commands, run:
+
+```powershell
+powershell -NoProfile -File scripts/capture_manual.ps1
+```
+
+This script pauses for manual capture. It never creates screenshot images.
+
 ## 1. Bayesian output
 
 From the repository root:
