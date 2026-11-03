@@ -90,7 +90,8 @@ def simulate_independently(initial, names, goals):
 
 def run(scenario, search_name):
     from pyperplan.search import astar_search, greedy_best_first_search
-    from pyperplan.heuristics.relaxation import hFFHeuristic, hMaxHeuristic
+    from pyperplan.heuristics.relaxation import hFFHeuristic
+    from lower_bound import RoverLowerBound
     source = ROOT / 'problem2' / ('Problem.pddl' if scenario == 'original' else 'Problem_extended.pddl')
     output = ROOT / 'problem2' / 'outputs'
     output.mkdir(exist_ok=True)
@@ -100,8 +101,9 @@ def run(scenario, search_name):
     logging.getLogger().setLevel(logging.INFO)
     start = time.perf_counter()
     task = load_task(source)
+    full_task = load_task(source, optimized=False)
     search = greedy_best_first_search if search_name == 'gbfs' else astar_search
-    heuristic = hFFHeuristic(task) if search_name == 'gbfs' else hMaxHeuristic(task)
+    heuristic = hFFHeuristic(task) if search_name == 'gbfs' else RoverLowerBound(full_task.initial_state)
     search_start = time.perf_counter()
     cpu_start = time.process_time()
     solution = search(task, heuristic)
@@ -111,7 +113,6 @@ def run(scenario, search_name):
     if solution is None:
         raise RuntimeError('No solution found')
     names = [op.name for op in solution]
-    full_task = load_task(source, optimized=False)
     operators = {op.name: op for op in full_task.operators}
     state = full_task.initial_state
     for name in names:
@@ -125,7 +126,7 @@ def run(scenario, search_name):
     assert expansion_match, 'Planner did not report expansions'
     import importlib.metadata
     metrics = {'scenario': scenario, 'search': search_name,
-               'heuristic': 'hFF' if search_name == 'gbfs' else 'hMax',
+               'heuristic': 'hFF' if search_name == 'gbfs' else 'handling + relaxed route / transport bound',
                'planner': 'pyperplan', 'planner_version': importlib.metadata.version('pyperplan'),
                'plan_length': len(names), 'total_actions': len(names),
                'action_counts': dict(collections.Counter(name.split()[0][1:] for name in names)),
