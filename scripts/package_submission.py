@@ -37,7 +37,7 @@ def main():
         raise SystemExit('Full verification has not completed successfully')
     output = ROOT / 'submission'
     output.mkdir(exist_ok=True)
-    files = [ROOT / filename for filename in ('README.md', 'AGENTS.md', 'GROUP_MEMBERS.md',
+    files = [ROOT / filename for filename in ('README.md', 'AGENTS.md', 'GROUP_MEMBERS.md', 'SUBMISSION_CHECKLIST.md',
               'requirements.txt', 'AI_group_assignment_02_2026.pdf', '.gitignore')]
     for folder in ('problem1', 'problem2', 'problem3', 'reports', 'tests', 'scripts', 'screenshots'):
         files.extend(p for p in (ROOT / folder).rglob('*') if p.is_file()

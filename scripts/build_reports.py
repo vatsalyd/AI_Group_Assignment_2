@@ -314,6 +314,7 @@ the clearer argument `--search gbfs`.''']
 
 
 def problem3_report():
+    runtime = json.loads((ROOT / 'problem3/outputs/runtime.json').read_text())['version']
     return '''# Problem 3: Royal archive access verification
 
 ## 1. Knowledge representation
@@ -435,7 +436,7 @@ Use `screenshots/README.md` to capture genuine execution screenshots.
 
 [SWI-Prolog downloads](https://www.swi-prolog.org/download/stable) provides
 the runtime. The verified run used SWI-Prolog 10.0.2 for x64 Windows.
-'''
+'''.replace('SWI-Prolog 10.0.2 for x64 Windows', runtime)
 
 
 def html_page(title, body):
@@ -517,9 +518,10 @@ def main():
     proof = (ROOT / 'problem3/outputs/proof_output.txt').read_text(encoding='utf-8-sig')
     body += '<pre>' + escape(proof[proof.index('RESOLUTION TRACE'):]) + '</pre></section>'
     (REPORTS / 'evidence.html').write_text(html_page('Verified program evidence', body), encoding='utf-8')
+    runtime = json.loads((ROOT / 'problem3/outputs/runtime.json').read_text())
     environment = {'python': platform.python_version(), 'platform': platform.platform(),
                    'numpy': results['numpy'], 'matplotlib': results['matplotlib'],
-                   'pyperplan': metrics[0]['planner_version'], 'swipl': '10.0.2 (checked with --version)',
+                   'pyperplan': metrics[0]['planner_version'], 'swipl': runtime['version'],
                    'seed': results['seed'], 'hash_seed': 0}
     (REPORTS / 'environment.json').write_text(json.dumps(environment, indent=2) + '\n', encoding='utf-8')
     capture_views(metrics)

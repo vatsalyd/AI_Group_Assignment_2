@@ -1,4 +1,6 @@
 import argparse
+import json
+import os
 from pathlib import Path
 import shutil
 import subprocess
@@ -24,6 +26,11 @@ def main():
         swipl = str(local)
     if not swipl:
         raise SystemExit('SWI-Prolog is required. Install it or use --swipl PATH.')
+    output = ROOT / 'problem3' / 'outputs'
+    output.mkdir(exist_ok=True)
+    version = execute([swipl, '--version'], capture_output=True, text=True, encoding='utf-8')
+    (output / 'runtime.json').write_text(json.dumps({'version': version.stdout.strip(),
+                                                 'executable': swipl}, indent=2) + '\n', encoding='utf-8')
     execute([sys.executable, 'problem1/run_analysis.py'])
     for scenario in ('original', 'extended'):
         for search in ('gbfs', 'astar'):
@@ -34,8 +41,6 @@ def main():
         raise RuntimeError(result.stderr)
     if 'C15 = []' not in result.stdout or 'SELF-TEST PASS' not in result.stdout:
         raise RuntimeError('Proof verification markers are missing')
-    output = ROOT / 'problem3' / 'outputs'
-    output.mkdir(exist_ok=True)
     (output / 'proof_output.txt').write_text(result.stdout, encoding='utf-8')
     print(result.stdout)
     execute([sys.executable, '-m', 'unittest', 'discover', '-s', 'tests', '-v'])
@@ -44,4 +49,15 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    if '--worker' in sys.argv:
+        sys.argv.remove('--worker')
+        main()
+    else:
+        log = ROOT / 'reports' / 'verification_run.txt'
+        log.parent.mkdir(exist_ok=True)
+        environment = dict(os.environ, PYTHONIOENCODING='utf-8')
+        with log.open('w', encoding='utf-8') as stream:
+            result = subprocess.run([sys.executable, __file__, '--worker', *sys.argv[1:]],
+                                    cwd=ROOT, env=environment, stdout=stream, stderr=subprocess.STDOUT)
+        print(log.read_text(encoding='utf-8'))
+        raise SystemExit(result.returncode)
