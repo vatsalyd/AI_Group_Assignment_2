@@ -1,0 +1,107 @@
+Relevance analysis removed 0 facts
+Initial h value: 27.000000
+Goal reached. Start extraction of solution.
+153190 Nodes expanded
+
+{
+  "scenario": "extended",
+  "search": "astar",
+  "heuristic": "handling + relaxed route / transport bound",
+  "planner": "pyperplan",
+  "planner_version": "2.1",
+  "plan_length": 40,
+  "total_actions": 40,
+  "action_counts": {
+    "move": 25,
+    "collect-soft": 4,
+    "pick-drill": 1,
+    "deposit": 7,
+    "collect-hard": 3
+  },
+  "nodes_expanded_including_goal": 153190,
+  "search_wall_seconds": 6.911383499973454,
+  "search_cpu_seconds": 6.890625,
+  "planning_wall_seconds": 6.924372499983292,
+  "grounded_operators": 216,
+  "validated": true,
+  "goal_facts": [
+    "(at curiosity base)",
+    "(empty bay1)",
+    "(empty bay2)",
+    "(rock-at rock1 base)",
+    "(rock-at rock2 base)",
+    "(rock-at rock3 base)",
+    "(rock-at rock4 base)",
+    "(rock-at rock5 base)",
+    "(rock-at rock6 base)",
+    "(rock-at rock7 base)"
+  ],
+  "final_dynamic_state": [
+    "(at curiosity base)",
+    "(empty bay1)",
+    "(empty bay2)",
+    "(has-drill curiosity)",
+    "(rock-at rock1 base)",
+    "(rock-at rock2 base)",
+    "(rock-at rock3 base)",
+    "(rock-at rock4 base)",
+    "(rock-at rock5 base)",
+    "(rock-at rock6 base)",
+    "(rock-at rock7 base)"
+  ]
+}
+
+PLAN
+01. (move curiosity base sitea)
+02. (move curiosity sitea sitec)
+03. (move curiosity sitec sited)
+04. (collect-soft curiosity rock4 bay1 sited)
+05. (move curiosity sited siteb)
+06. (collect-soft curiosity rock2 bay2 siteb)
+07. (move curiosity siteb sited)
+08. (move curiosity sited sitee)
+09. (pick-drill curiosity drill1 sitee)
+10. (move curiosity sitee sitec)
+11. (move curiosity sitec sitea)
+12. (move curiosity sitea base)
+13. (deposit curiosity rock2 bay2 base)
+14. (deposit curiosity rock4 bay1 base)
+15. (move curiosity base sitea)
+16. (move curiosity sitea sitec)
+17. (move curiosity sitec sitee)
+18. (move curiosity sitee sitef)
+19. (collect-hard curiosity rock5 bay1 sitef)
+20. (collect-hard curiosity rock7 bay2 sitef)
+21. (move curiosity sitef sitee)
+22. (move curiosity sitee sitec)
+23. (move curiosity sitec sitea)
+24. (move curiosity sitea base)
+25. (deposit curiosity rock5 bay1 base)
+26. (deposit curiosity rock7 bay2 base)
+27. (move curiosity base sitea)
+28. (move curiosity sitea sitec)
+29. (move curiosity sitec sitee)
+30. (collect-soft curiosity rock6 bay1 sitee)
+31. (move curiosity sitee sitec)
+32. (collect-hard curiosity rock3 bay2 sitec)
+33. (move curiosity sitec sitea)
+34. (move curiosity sitea base)
+35. (deposit curiosity rock3 bay2 base)
+36. (deposit curiosity rock6 bay1 base)
+37. (move curiosity base sitea)
+38. (collect-soft curiosity rock1 bay1 sitea)
+39. (move curiosity sitea base)
+40. (deposit curiosity rock1 bay1 base)
+
+FINAL GOALS VERIFIED
+(at curiosity base)
+(empty bay1)
+(empty bay2)
+(has-drill curiosity)
+(rock-at rock1 base)
+(rock-at rock2 base)
+(rock-at rock3 base)
+(rock-at rock4 base)
+(rock-at rock5 base)
+(rock-at rock6 base)
+(rock-at rock7 base)

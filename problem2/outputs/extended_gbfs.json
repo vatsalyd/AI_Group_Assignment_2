@@ -1,0 +1,47 @@
+{
+  "scenario": "extended",
+  "search": "gbfs",
+  "heuristic": "hFF",
+  "planner": "pyperplan",
+  "planner_version": "2.1",
+  "plan_length": 44,
+  "total_actions": 44,
+  "action_counts": {
+    "move": 29,
+    "collect-soft": 4,
+    "deposit": 7,
+    "pick-drill": 1,
+    "collect-hard": 3
+  },
+  "nodes_expanded_including_goal": 91,
+  "search_wall_seconds": 0.06244280003011227,
+  "search_cpu_seconds": 0.0625,
+  "planning_wall_seconds": 0.07186810002895072,
+  "grounded_operators": 216,
+  "validated": true,
+  "goal_facts": [
+    "(at curiosity base)",
+    "(empty bay1)",
+    "(empty bay2)",
+    "(rock-at rock1 base)",
+    "(rock-at rock2 base)",
+    "(rock-at rock3 base)",
+    "(rock-at rock4 base)",
+    "(rock-at rock5 base)",
+    "(rock-at rock6 base)",
+    "(rock-at rock7 base)"
+  ],
+  "final_dynamic_state": [
+    "(at curiosity base)",
+    "(empty bay1)",
+    "(empty bay2)",
+    "(has-drill curiosity)",
+    "(rock-at rock1 base)",
+    "(rock-at rock2 base)",
+    "(rock-at rock3 base)",
+    "(rock-at rock4 base)",
+    "(rock-at rock5 base)",
+    "(rock-at rock6 base)",
+    "(rock-at rock7 base)"
+  ]
+}
