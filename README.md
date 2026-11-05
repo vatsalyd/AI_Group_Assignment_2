@@ -16,7 +16,7 @@ and the FOL resolution proof.
 | `problem1/` | Bayesian code, three generated datasets, CPTs, tables, figures |
 | `problem2/` | Three required PDDL files, planner wrapper, heuristic, four plans and state traces |
 | `problem3/` | Required single Prolog file and actual proof output |
-| `reports/` | Analysis, AI instruction check, environment, verification log |
+| `reports/` | Analysis, environment, verification log |
 | `tests/` | Inference and planning checks |
 | `screenshots/` | Capture instructions and genuine captures, when present |
 | `scripts/` | Reproduction, report generation, and packaging |
@@ -90,10 +90,3 @@ python scripts/package_submission.py
 The packaging script checks required files and creates a SHA-256 manifest.
 Use `--require-screenshots` to require the listed captures before packaging.
 The ZIP excludes `.git`, virtual environments, local tools, and caches.
-
-## AI reporting
-
-No explicit AI reporting instruction was found in the supplied PDF. The scope
-of this check and an honest assistance statement are in
-[reports/AI_INSTRUCTIONS.md](reports/AI_INSTRUCTIONS.md). Separate course policies
-were not available. Read and understand the submitted work before submitting.

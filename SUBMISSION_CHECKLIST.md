@@ -18,8 +18,6 @@ Group: **Old I.N.D**
 - [x] Eight Prolog sections, actual FOL-to-CNF transformations, ordered resolution
   trace, derived empty clause, and proof checks executed in SWI-Prolog.
 - [x] Complete analysis report and reproducible run commands.
-- [x] AI instruction check documented; no explicit AI disclosure requirement found
-  in the supplied PDF. Separate course policy remains unknown.
 - [x] Local Git repository with focused commits.
 
 ## Manual work still required

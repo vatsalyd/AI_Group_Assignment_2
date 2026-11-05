@@ -497,7 +497,6 @@ def main():
     members = (ROOT / 'GROUP_MEMBERS.md').read_text()
     combined = '# AI Group Assignment 2\n\n' + members.replace('# Group members', '## Group members', 1)
     combined += '\n\n' + '\n\n'.join(contents.values())
-    combined += '\n\n# AI reporting check\n\n' + (REPORTS / 'AI_INSTRUCTIONS.md').read_text().split('\n', 1)[1]
     (REPORTS / 'REPORT.md').write_text(combined, encoding='utf-8')
     from markdown_it import MarkdownIt
     renderer = MarkdownIt().enable('table')
