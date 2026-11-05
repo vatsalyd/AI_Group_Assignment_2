@@ -1,0 +1,10 @@
+{
+  "python": "3.14.8",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "numpy": "2.5.3",
+  "matplotlib": "3.11.2",
+  "pyperplan": "2.1",
+  "swipl": "SWI-Prolog version 10.0.2 for x64-win64",
+  "seed": 2026,
+  "hash_seed": 0
+}

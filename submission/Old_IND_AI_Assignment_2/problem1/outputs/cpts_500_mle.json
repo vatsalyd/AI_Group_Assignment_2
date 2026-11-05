@@ -1,0 +1,169 @@
+[
+  {
+    "node": "W",
+    "parents": {},
+    "probabilities": {
+      "Hot": 0.54,
+      "Mild": 0.274,
+      "Cold": 0.186
+    }
+  },
+  {
+    "node": "D",
+    "parents": {},
+    "probabilities": {
+      "Weekday": 0.724,
+      "Weekend": 0.276
+    }
+  },
+  {
+    "node": "O",
+    "parents": {
+      "D": "Weekday"
+    },
+    "probabilities": {
+      "High": 0.46685082872928174,
+      "Low": 0.5331491712707183
+    }
+  },
+  {
+    "node": "O",
+    "parents": {
+      "D": "Weekend"
+    },
+    "probabilities": {
+      "High": 0.7681159420289855,
+      "Low": 0.2318840579710145
+    }
+  },
+  {
+    "node": "A",
+    "parents": {
+      "W": "Hot",
+      "O": "High"
+    },
+    "probabilities": {
+      "On": 0.9182389937106918,
+      "Off": 0.08176100628930817
+    }
+  },
+  {
+    "node": "A",
+    "parents": {
+      "W": "Hot",
+      "O": "Low"
+    },
+    "probabilities": {
+      "On": 0.6036036036036037,
+      "Off": 0.3963963963963964
+    }
+  },
+  {
+    "node": "A",
+    "parents": {
+      "W": "Mild",
+      "O": "High"
+    },
+    "probabilities": {
+      "On": 0.38028169014084506,
+      "Off": 0.6197183098591549
+    }
+  },
+  {
+    "node": "A",
+    "parents": {
+      "W": "Mild",
+      "O": "Low"
+    },
+    "probabilities": {
+      "On": 0.19696969696969696,
+      "Off": 0.803030303030303
+    }
+  },
+  {
+    "node": "A",
+    "parents": {
+      "W": "Cold",
+      "O": "High"
+    },
+    "probabilities": {
+      "On": 0.08888888888888889,
+      "Off": 0.9111111111111111
+    }
+  },
+  {
+    "node": "A",
+    "parents": {
+      "W": "Cold",
+      "O": "Low"
+    },
+    "probabilities": {
+      "On": 0.041666666666666664,
+      "Off": 0.9583333333333334
+    }
+  },
+  {
+    "node": "L",
+    "parents": {
+      "O": "High"
+    },
+    "probabilities": {
+      "Heavy": 0.7709090909090909,
+      "Light": 0.2290909090909091
+    }
+  },
+  {
+    "node": "L",
+    "parents": {
+      "O": "Low"
+    },
+    "probabilities": {
+      "Heavy": 0.29333333333333333,
+      "Light": 0.7066666666666667
+    }
+  },
+  {
+    "node": "E",
+    "parents": {
+      "A": "On",
+      "L": "Heavy"
+    },
+    "probabilities": {
+      "High": 0.8975903614457831,
+      "Low": 0.10240963855421686
+    }
+  },
+  {
+    "node": "E",
+    "parents": {
+      "A": "On",
+      "L": "Light"
+    },
+    "probabilities": {
+      "High": 0.7311827956989247,
+      "Low": 0.26881720430107525
+    }
+  },
+  {
+    "node": "E",
+    "parents": {
+      "A": "Off",
+      "L": "Heavy"
+    },
+    "probabilities": {
+      "High": 0.6160714285714286,
+      "Low": 0.38392857142857145
+    }
+  },
+  {
+    "node": "E",
+    "parents": {
+      "A": "Off",
+      "L": "Light"
+    },
+    "probabilities": {
+      "High": 0.06201550387596899,
+      "Low": 0.937984496124031
+    }
+  }
+]

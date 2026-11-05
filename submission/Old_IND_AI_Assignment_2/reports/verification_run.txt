@@ -1,0 +1,629 @@
+
+RUN: C:\Users\Lenovo\Downloads\AI_Group_Assignment_2\tools\swipl\bin\swipl.exe --version
+
+RUN: C:\Users\Lenovo\AppData\Local\Python\pythoncore-3.14-64\python.exe problem1/run_analysis.py
+SMART HOME BAYESIAN NETWORK
+Seed: 2026; nested dataset prefixes
+All CPTs and the full joint distribution sum to one.
+
+Expert queries:
+Q1: 0.5806310375
+Q2: 0.7062657500
+Q3: 0.6401985000
+Q4: 0.4842500000
+Q5: 0.6081880785
+Q6: 0.6928666813
+Q7: 0.6498993030
+
+N = 500
+Weather counts: {'Hot': 270, 'Mild': 137, 'Cold': 93}
+Weather frequencies: {'Hot': 0.54, 'Mild': 0.274, 'Cold': 0.186}
+Weather / occupancy counts:
+  Hot  High: 159
+  Hot  Low : 111
+  Mild High: 71
+  Mild Low : 66
+  Cold High: 45
+  Cold Low : 48
+AC CPT: W O | Expert(On) MLE(On) BDeu(On)
+  Hot  High | 0.900000 0.918239 0.913900
+  Hot  Low  | 0.600000 0.603604 0.602071
+  Mild High | 0.400000 0.380282 0.383028
+  Mild Low  | 0.150000 0.196970 0.204433
+  Cold High | 0.100000 0.088889 0.103571
+  Cold Low  | 0.050000 0.041667 0.057047
+Query | Expert | MLE | Bayesian | |Diff| MLE | |Diff| Bayesian
+Q1 | 0.580631038 | 0.592554211 | 0.590745732 | 0.011923173 | 0.010114694
+Q2 | 0.706265750 | 0.707970856 | 0.702865327 | 0.001705106 | 0.003400423
+Q3 | 0.640198500 | 0.653104782 | 0.646961488 | 0.012906282 | 0.006762988
+Q4 | 0.484250000 | 0.522060088 | 0.524402361 | 0.037810088 | 0.040152361
+Q5 | 0.608188078 | 0.645180230 | 0.637667009 | 0.036992152 | 0.029478931
+Q6 | 0.692866681 | 0.721506274 | 0.717685381 | 0.028639592 | 0.024818700
+Q7 | 0.649899303 | 0.651713775 | 0.649355322 | 0.001814472 | 0.000543981
+MLE mean absolute difference: 0.018827266
+BDeu mean absolute difference: 0.016467440
+Evidence counts Q1-Q7: [500, 270, 138, 45, 294, 294, 218]
+
+N = 5000
+Weather counts: {'Hot': 2509, 'Mild': 1490, 'Cold': 1001}
+Weather frequencies: {'Hot': 0.5018, 'Mild': 0.298, 'Cold': 0.2002}
+Weather / occupancy counts:
+  Hot  High: 1400
+  Hot  Low : 1109
+  Mild High: 817
+  Mild Low : 673
+  Cold High: 571
+  Cold Low : 430
+AC CPT: W O | Expert(On) MLE(On) BDeu(On)
+  Hot  High | 0.900000 0.915714 0.915220
+  Hot  Low  | 0.600000 0.605050 0.604892
+  Mild High | 0.400000 0.429621 0.429764
+  Mild Low  | 0.150000 0.158990 0.159832
+  Cold High | 0.100000 0.092820 0.094005
+  Cold Low  | 0.050000 0.041860 0.043629
+Query | Expert | MLE | Bayesian | |Diff| MLE | |Diff| Bayesian
+Q1 | 0.580631038 | 0.581638722 | 0.581483277 | 0.001007684 | 0.000852240
+Q2 | 0.706265750 | 0.706872714 | 0.706311878 | 0.000606964 | 0.000046128
+Q3 | 0.640198500 | 0.645648548 | 0.645009075 | 0.005450048 | 0.004810575
+Q4 | 0.484250000 | 0.486527559 | 0.486851614 | 0.002277559 | 0.002601614
+Q5 | 0.608188078 | 0.609843731 | 0.609114328 | 0.001655652 | 0.000926249
+Q6 | 0.692866681 | 0.705686149 | 0.705295867 | 0.012819468 | 0.012429186
+Q7 | 0.649899303 | 0.659934848 | 0.659657170 | 0.010035545 | 0.009757867
+MLE mean absolute difference: 0.004836132
+BDeu mean absolute difference: 0.004489123
+Evidence counts Q1-Q7: [5000, 2509, 1472, 571, 2903, 2903, 2152]
+
+N = 20000
+Weather counts: {'Hot': 10068, 'Mild': 5956, 'Cold': 3976}
+Weather frequencies: {'Hot': 0.5034, 'Mild': 0.2978, 'Cold': 0.1988}
+Weather / occupancy counts:
+  Hot  High: 5584
+  Hot  Low : 4484
+  Mild High: 3331
+  Mild Low : 2625
+  Cold High: 2198
+  Cold Low : 1778
+AC CPT: W O | Expert(On) MLE(On) BDeu(On)
+  Hot  High | 0.900000 0.907772 0.907651
+  Hot  Low  | 0.600000 0.604817 0.604778
+  Mild High | 0.400000 0.398079 0.398130
+  Mild Low  | 0.150000 0.139429 0.139657
+  Cold High | 0.100000 0.089627 0.089938
+  Cold Low  | 0.050000 0.042745 0.043173
+Query | Expert | MLE | Bayesian | |Diff| MLE | |Diff| Bayesian
+Q1 | 0.580631038 | 0.580005495 | 0.579967785 | 0.000625542 | 0.000663253
+Q2 | 0.706265750 | 0.710105206 | 0.709960033 | 0.003839456 | 0.003694283
+Q3 | 0.640198500 | 0.640395268 | 0.640242476 | 0.000196768 | 0.000043976
+Q4 | 0.484250000 | 0.475909815 | 0.476011086 | 0.008340185 | 0.008238914
+Q5 | 0.608188078 | 0.616316507 | 0.616126533 | 0.008128428 | 0.007938454
+Q6 | 0.692866681 | 0.698532051 | 0.698437440 | 0.005665370 | 0.005570758
+Q7 | 0.649899303 | 0.653660835 | 0.653595220 | 0.003761532 | 0.003695917
+MLE mean absolute difference: 0.004365326
+BDeu mean absolute difference: 0.004263651
+Evidence counts Q1-Q7: [20000, 10068, 5892, 2198, 11605, 11605, 8533]
+
+
+RUN: C:\Users\Lenovo\AppData\Local\Python\pythoncore-3.14-64\python.exe problem2/run_planner.py --scenario original --search gbfs
+Relevance analysis removed 0 facts
+Initial h value: 17.000000
+Goal reached. Start extraction of solution.
+45 Nodes expanded
+
+{
+  "scenario": "original",
+  "search": "gbfs",
+  "heuristic": "hFF",
+  "planner": "pyperplan",
+  "planner_version": "2.1",
+  "plan_length": 30,
+  "total_actions": 30,
+  "action_counts": {
+    "move": 19,
+    "collect-soft": 3,
+    "deposit": 5,
+    "pick-drill": 1,
+    "collect-hard": 2
+  },
+  "nodes_expanded_including_goal": 45,
+  "search_wall_seconds": 0.02027259999886155,
+  "search_cpu_seconds": 0.03125,
+  "planning_wall_seconds": 0.03366539999842644,
+  "grounded_operators": 162,
+  "validated": true,
+  "goal_facts": [
+    "(at curiosity base)",
+    "(empty bay1)",
+    "(empty bay2)",
+    "(rock-at rock1 base)",
+    "(rock-at rock2 base)",
+    "(rock-at rock3 base)",
+    "(rock-at rock4 base)",
+    "(rock-at rock5 base)"
+  ],
+  "final_dynamic_state": [
+    "(at curiosity base)",
+    "(empty bay1)",
+    "(empty bay2)",
+    "(has-drill curiosity)",
+    "(rock-at rock1 base)",
+    "(rock-at rock2 base)",
+    "(rock-at rock3 base)",
+    "(rock-at rock4 base)",
+    "(rock-at rock5 base)"
+  ]
+}
+
+PLAN
+01. (move curiosity base sitea)
+02. (collect-soft curiosity rock1 bay1 sitea)
+03. (move curiosity sitea base)
+04. (deposit curiosity rock1 bay1 base)
+05. (move curiosity base siteb)
+06. (collect-soft curiosity rock2 bay1 siteb)
+07. (move curiosity siteb base)
+08. (deposit curiosity rock2 bay1 base)
+09. (move curiosity base sitea)
+10. (move curiosity sitea sitec)
+11. (move curiosity sitec sitee)
+12. (pick-drill curiosity drill1 sitee)
+13. (move curiosity sitee sitec)
+14. (collect-hard curiosity rock3 bay1 sitec)
+15. (move curiosity sitec sited)
+16. (collect-soft curiosity rock4 bay2 sited)
+17. (move curiosity sited siteb)
+18. (move curiosity siteb base)
+19. (deposit curiosity rock3 bay1 base)
+20. (deposit curiosity rock4 bay2 base)
+21. (move curiosity base sitea)
+22. (move curiosity sitea sitec)
+23. (move curiosity sitec sitee)
+24. (move curiosity sitee sitef)
+25. (collect-hard curiosity rock5 bay1 sitef)
+26. (move curiosity sitef sitee)
+27. (move curiosity sitee sitec)
+28. (move curiosity sitec sitea)
+29. (move curiosity sitea base)
+30. (deposit curiosity rock5 bay1 base)
+
+FINAL GOALS VERIFIED
+(at curiosity base)
+(empty bay1)
+(empty bay2)
+(has-drill curiosity)
+(rock-at rock1 base)
+(rock-at rock2 base)
+(rock-at rock3 base)
+(rock-at rock4 base)
+(rock-at rock5 base)
+
+
+RUN: C:\Users\Lenovo\AppData\Local\Python\pythoncore-3.14-64\python.exe problem2/run_planner.py --scenario original --search astar
+Relevance analysis removed 0 facts
+Initial h value: 19.000000
+Goal reached. Start extraction of solution.
+1327 Nodes expanded
+
+{
+  "scenario": "original",
+  "search": "astar",
+  "heuristic": "handling + relaxed route / transport bound",
+  "planner": "pyperplan",
+  "planner_version": "2.1",
+  "plan_length": 25,
+  "total_actions": 25,
+  "action_counts": {
+    "move": 14,
+    "collect-soft": 3,
+    "deposit": 5,
+    "pick-drill": 1,
+    "collect-hard": 2
+  },
+  "nodes_expanded_including_goal": 1327,
+  "search_wall_seconds": 0.04572530003497377,
+  "search_cpu_seconds": 0.046875,
+  "planning_wall_seconds": 0.058839600009378046,
+  "grounded_operators": 162,
+  "validated": true,
+  "goal_facts": [
+    "(at curiosity base)",
+    "(empty bay1)",
+    "(empty bay2)",
+    "(rock-at rock1 base)",
+    "(rock-at rock2 base)",
+    "(rock-at rock3 base)",
+    "(rock-at rock4 base)",
+    "(rock-at rock5 base)"
+  ],
+  "final_dynamic_state": [
+    "(at curiosity base)",
+    "(empty bay1)",
+    "(empty bay2)",
+    "(has-drill curiosity)",
+    "(rock-at rock1 base)",
+    "(rock-at rock2 base)",
+    "(rock-at rock3 base)",
+    "(rock-at rock4 base)",
+    "(rock-at rock5 base)"
+  ]
+}
+
+PLAN
+01. (move curiosity base siteb)
+02. (collect-soft curiosity rock2 bay1 siteb)
+03. (move curiosity siteb sited)
+04. (collect-soft curiosity rock4 bay2 sited)
+05. (move curiosity sited siteb)
+06. (move curiosity siteb base)
+07. (deposit curiosity rock2 bay1 base)
+08. (deposit curiosity rock4 bay2 base)
+09. (move curiosity base sitea)
+10. (move curiosity sitea sitec)
+11. (move curiosity sitec sitee)
+12. (pick-drill curiosity drill1 sitee)
+13. (move curiosity sitee sitef)
+14. (collect-hard curiosity rock5 bay1 sitef)
+15. (move curiosity sitef sitee)
+16. (move curiosity sitee sitec)
+17. (collect-hard curiosity rock3 bay2 sitec)
+18. (move curiosity sitec sitea)
+19. (move curiosity sitea base)
+20. (deposit curiosity rock3 bay2 base)
+21. (deposit curiosity rock5 bay1 base)
+22. (move curiosity base sitea)
+23. (collect-soft curiosity rock1 bay1 sitea)
+24. (move curiosity sitea base)
+25. (deposit curiosity rock1 bay1 base)
+
+FINAL GOALS VERIFIED
+(at curiosity base)
+(empty bay1)
+(empty bay2)
+(has-drill curiosity)
+(rock-at rock1 base)
+(rock-at rock2 base)
+(rock-at rock3 base)
+(rock-at rock4 base)
+(rock-at rock5 base)
+
+
+RUN: C:\Users\Lenovo\AppData\Local\Python\pythoncore-3.14-64\python.exe problem2/run_planner.py --scenario extended --search gbfs
+Relevance analysis removed 0 facts
+Initial h value: 21.000000
+Goal reached. Start extraction of solution.
+91 Nodes expanded
+
+{
+  "scenario": "extended",
+  "search": "gbfs",
+  "heuristic": "hFF",
+  "planner": "pyperplan",
+  "planner_version": "2.1",
+  "plan_length": 44,
+  "total_actions": 44,
+  "action_counts": {
+    "move": 29,
+    "collect-soft": 4,
+    "deposit": 7,
+    "pick-drill": 1,
+    "collect-hard": 3
+  },
+  "nodes_expanded_including_goal": 91,
+  "search_wall_seconds": 0.05915619997540489,
+  "search_cpu_seconds": 0.0625,
+  "planning_wall_seconds": 0.07351949997246265,
+  "grounded_operators": 216,
+  "validated": true,
+  "goal_facts": [
+    "(at curiosity base)",
+    "(empty bay1)",
+    "(empty bay2)",
+    "(rock-at rock1 base)",
+    "(rock-at rock2 base)",
+    "(rock-at rock3 base)",
+    "(rock-at rock4 base)",
+    "(rock-at rock5 base)",
+    "(rock-at rock6 base)",
+    "(rock-at rock7 base)"
+  ],
+  "final_dynamic_state": [
+    "(at curiosity base)",
+    "(empty bay1)",
+    "(empty bay2)",
+    "(has-drill curiosity)",
+    "(rock-at rock1 base)",
+    "(rock-at rock2 base)",
+    "(rock-at rock3 base)",
+    "(rock-at rock4 base)",
+    "(rock-at rock5 base)",
+    "(rock-at rock6 base)",
+    "(rock-at rock7 base)"
+  ]
+}
+
+PLAN
+01. (move curiosity base sitea)
+02. (collect-soft curiosity rock1 bay1 sitea)
+03. (move curiosity sitea base)
+04. (deposit curiosity rock1 bay1 base)
+05. (move curiosity base sitea)
+06. (move curiosity sitea sitec)
+07. (move curiosity sitec sitee)
+08. (pick-drill curiosity drill1 sitee)
+09. (collect-soft curiosity rock6 bay1 sitee)
+10. (move curiosity sitee sitec)
+11. (move curiosity sitec sitea)
+12. (move curiosity sitea base)
+13. (deposit curiosity rock6 bay1 base)
+14. (move curiosity base sitea)
+15. (move curiosity sitea sitec)
+16. (collect-hard curiosity rock3 bay1 sitec)
+17. (move curiosity sitec sitea)
+18. (move curiosity sitea base)
+19. (deposit curiosity rock3 bay1 base)
+20. (move curiosity base sitea)
+21. (move curiosity sitea sitec)
+22. (move curiosity sitec sited)
+23. (move curiosity sited siteb)
+24. (collect-soft curiosity rock2 bay1 siteb)
+25. (move curiosity siteb sited)
+26. (collect-soft curiosity rock4 bay2 sited)
+27. (move curiosity sited sitee)
+28. (move curiosity sitee sitec)
+29. (move curiosity sitec sitea)
+30. (move curiosity sitea base)
+31. (deposit curiosity rock2 bay1 base)
+32. (deposit curiosity rock4 bay2 base)
+33. (move curiosity base sitea)
+34. (move curiosity sitea sitec)
+35. (move curiosity sitec sitee)
+36. (move curiosity sitee sitef)
+37. (collect-hard curiosity rock5 bay1 sitef)
+38. (collect-hard curiosity rock7 bay2 sitef)
+39. (move curiosity sitef sitee)
+40. (move curiosity sitee sitec)
+41. (move curiosity sitec sitea)
+42. (move curiosity sitea base)
+43. (deposit curiosity rock5 bay1 base)
+44. (deposit curiosity rock7 bay2 base)
+
+FINAL GOALS VERIFIED
+(at curiosity base)
+(empty bay1)
+(empty bay2)
+(has-drill curiosity)
+(rock-at rock1 base)
+(rock-at rock2 base)
+(rock-at rock3 base)
+(rock-at rock4 base)
+(rock-at rock5 base)
+(rock-at rock6 base)
+(rock-at rock7 base)
+
+
+RUN: C:\Users\Lenovo\AppData\Local\Python\pythoncore-3.14-64\python.exe problem2/run_planner.py --scenario extended --search astar
+Relevance analysis removed 0 facts
+Initial h value: 27.000000
+Goal reached. Start extraction of solution.
+153190 Nodes expanded
+
+{
+  "scenario": "extended",
+  "search": "astar",
+  "heuristic": "handling + relaxed route / transport bound",
+  "planner": "pyperplan",
+  "planner_version": "2.1",
+  "plan_length": 40,
+  "total_actions": 40,
+  "action_counts": {
+    "move": 25,
+    "collect-soft": 4,
+    "pick-drill": 1,
+    "deposit": 7,
+    "collect-hard": 3
+  },
+  "nodes_expanded_including_goal": 153190,
+  "search_wall_seconds": 8.133757400035392,
+  "search_cpu_seconds": 8.109375,
+  "planning_wall_seconds": 8.147260700003244,
+  "grounded_operators": 216,
+  "validated": true,
+  "goal_facts": [
+    "(at curiosity base)",
+    "(empty bay1)",
+    "(empty bay2)",
+    "(rock-at rock1 base)",
+    "(rock-at rock2 base)",
+    "(rock-at rock3 base)",
+    "(rock-at rock4 base)",
+    "(rock-at rock5 base)",
+    "(rock-at rock6 base)",
+    "(rock-at rock7 base)"
+  ],
+  "final_dynamic_state": [
+    "(at curiosity base)",
+    "(empty bay1)",
+    "(empty bay2)",
+    "(has-drill curiosity)",
+    "(rock-at rock1 base)",
+    "(rock-at rock2 base)",
+    "(rock-at rock3 base)",
+    "(rock-at rock4 base)",
+    "(rock-at rock5 base)",
+    "(rock-at rock6 base)",
+    "(rock-at rock7 base)"
+  ]
+}
+
+PLAN
+01. (move curiosity base sitea)
+02. (move curiosity sitea sitec)
+03. (move curiosity sitec sited)
+04. (collect-soft curiosity rock4 bay1 sited)
+05. (move curiosity sited siteb)
+06. (collect-soft curiosity rock2 bay2 siteb)
+07. (move curiosity siteb sited)
+08. (move curiosity sited sitee)
+09. (pick-drill curiosity drill1 sitee)
+10. (move curiosity sitee sitec)
+11. (move curiosity sitec sitea)
+12. (move curiosity sitea base)
+13. (deposit curiosity rock2 bay2 base)
+14. (deposit curiosity rock4 bay1 base)
+15. (move curiosity base sitea)
+16. (move curiosity sitea sitec)
+17. (move curiosity sitec sitee)
+18. (move curiosity sitee sitef)
+19. (collect-hard curiosity rock5 bay1 sitef)
+20. (collect-hard curiosity rock7 bay2 sitef)
+21. (move curiosity sitef sitee)
+22. (move curiosity sitee sitec)
+23. (move curiosity sitec sitea)
+24. (move curiosity sitea base)
+25. (deposit curiosity rock5 bay1 base)
+26. (deposit curiosity rock7 bay2 base)
+27. (move curiosity base sitea)
+28. (move curiosity sitea sitec)
+29. (move curiosity sitec sitee)
+30. (collect-soft curiosity rock6 bay1 sitee)
+31. (move curiosity sitee sitec)
+32. (collect-hard curiosity rock3 bay2 sitec)
+33. (move curiosity sitec sitea)
+34. (move curiosity sitea base)
+35. (deposit curiosity rock3 bay2 base)
+36. (deposit curiosity rock6 bay1 base)
+37. (move curiosity base sitea)
+38. (collect-soft curiosity rock1 bay1 sitea)
+39. (move curiosity sitea base)
+40. (deposit curiosity rock1 bay1 base)
+
+FINAL GOALS VERIFIED
+(at curiosity base)
+(empty bay1)
+(empty bay2)
+(has-drill curiosity)
+(rock-at rock1 base)
+(rock-at rock2 base)
+(rock-at rock3 base)
+(rock-at rock4 base)
+(rock-at rock5 base)
+(rock-at rock6 base)
+(rock-at rock7 base)
+
+
+RUN: C:\Users\Lenovo\Downloads\AI_Group_Assignment_2\tools\swipl\bin\swipl.exe -q -s problem3/royal_archive_access.pl -g main -t halt
+ROYAL ARCHIVE: RESOLUTION REFUTATION
+Goal: trusted(mira)
+Negated goal: not(trusted(mira))
+
+Stage: fol
+all(A,all(B,implies(and(archivist(A),verifies(A,B)),trusted(A))))
+all(A,all(B,implies(and(trusted(A),and(access(A,B),sealed(B))),permitted(A,B))))
+all(A,all(B,implies(and(inspects(A,B),finds_mark(A,B)),verifies(A,B))))
+all(A,implies(stored(A,royal_archive),sealed(A)))
+stored(scroll_7,royal_archive)
+access(mira,scroll_7)
+and(inspects(mira,scroll_7),finds_mark(mira,scroll_7))
+archivist(mira)
+not(trusted(mira))
+
+Stage: implication_removal
+all(A,all(B,or(not(and(archivist(A),verifies(A,B))),trusted(A))))
+all(A,all(B,or(not(and(trusted(A),and(access(A,B),sealed(B)))),permitted(A,B))))
+all(A,all(B,or(not(and(inspects(A,B),finds_mark(A,B))),verifies(A,B))))
+all(A,or(not(stored(A,royal_archive)),sealed(A)))
+stored(scroll_7,royal_archive)
+access(mira,scroll_7)
+and(inspects(mira,scroll_7),finds_mark(mira,scroll_7))
+archivist(mira)
+not(trusted(mira))
+
+Stage: negation_movement
+all(A,all(B,or(or(not(archivist(A)),not(verifies(A,B))),trusted(A))))
+all(A,all(B,or(or(not(trusted(A)),or(not(access(A,B)),not(sealed(B)))),permitted(A,B))))
+all(A,all(B,or(or(not(inspects(A,B)),not(finds_mark(A,B))),verifies(A,B))))
+all(A,or(not(stored(A,royal_archive)),sealed(A)))
+stored(scroll_7,royal_archive)
+access(mira,scroll_7)
+and(inspects(mira,scroll_7),finds_mark(mira,scroll_7))
+archivist(mira)
+not(trusted(mira))
+
+Stage: standardization
+all(A,all(B,or(or(not(archivist(A)),not(verifies(A,B))),trusted(A))))
+all(A,all(B,or(or(not(trusted(A)),or(not(access(A,B)),not(sealed(B)))),permitted(A,B))))
+all(A,all(B,or(or(not(inspects(A,B)),not(finds_mark(A,B))),verifies(A,B))))
+all(A,or(not(stored(A,royal_archive)),sealed(A)))
+stored(scroll_7,royal_archive)
+access(mira,scroll_7)
+and(inspects(mira,scroll_7),finds_mark(mira,scroll_7))
+archivist(mira)
+not(trusted(mira))
+
+Stage: skolemization_and_universal_removal
+or(or(not(archivist(A)),not(verifies(A,B))),trusted(A))
+or(or(not(trusted(A)),or(not(access(A,B)),not(sealed(B)))),permitted(A,B))
+or(or(not(inspects(A,B)),not(finds_mark(A,B))),verifies(A,B))
+or(not(stored(A,royal_archive)),sealed(A))
+stored(scroll_7,royal_archive)
+access(mira,scroll_7)
+and(inspects(mira,scroll_7),finds_mark(mira,scroll_7))
+archivist(mira)
+not(trusted(mira))
+No existential quantifiers: no Skolem symbols are needed.
+
+CNF CLAUSES
+C1: [neg(archivist(A)),neg(verifies(A,B)),pos(trusted(A))]
+C2: [neg(sealed(A)),neg(trusted(B)),neg(access(B,A)),pos(permitted(B,A))]
+C3: [neg(finds_mark(A,B)),neg(inspects(A,B)),pos(verifies(A,B))]
+C4: [neg(stored(A,royal_archive)),pos(sealed(A))]
+C5: [pos(stored(scroll_7,royal_archive))]
+C6: [pos(access(mira,scroll_7))]
+C7: [pos(inspects(mira,scroll_7))]
+C8: [pos(finds_mark(mira,scroll_7))]
+C9: [pos(archivist(mira))]
+C10: [neg(trusted(mira))]
+
+RESOLUTION TRACE
+C11 = resolve(C1, C10)
+  pivot before unification: trusted(A)-trusted(mira)
+  variable values before-after: [A,B]-[mira,C]
+  resolvent: [neg(archivist(mira)),neg(verifies(mira,A))]
+C12 = resolve(C9, C11)
+  pivot before unification: archivist(mira)-archivist(mira)
+  variable values before-after: [A]-[B]
+  resolvent: [neg(verifies(mira,A))]
+C13 = resolve(C3, C12)
+  pivot before unification: verifies(A,B)-verifies(mira,C)
+  variable values before-after: [A,B,C]-[mira,D,D]
+  resolvent: [neg(finds_mark(mira,A)),neg(inspects(mira,A))]
+C14 = resolve(C7, C13)
+  pivot before unification: inspects(mira,scroll_7)-inspects(mira,A)
+  variable values before-after: [A]-[scroll_7]
+  resolvent: [neg(finds_mark(mira,scroll_7))]
+C15 = resolve(C8, C14)
+  pivot before unification: finds_mark(mira,scroll_7)-finds_mark(mira,scroll_7)
+  variable values before-after: []-[]
+  resolvent: []
+
+C15 = [] (empty clause). Contradiction derived.
+VERIFIED: trusted(mira) follows from the knowledge base.
+SELF-TEST PASS: replayed proof, no assumed goal, unification, required facts.
+
+
+RUN: C:\Users\Lenovo\AppData\Local\Python\pythoncore-3.14-64\python.exe -m unittest discover -s tests -v
+test_independence_and_explaining_away (test_bayesian.BayesianTests.test_independence_and_explaining_away) ... ok
+test_invalid_model_and_impossible_evidence (test_bayesian.BayesianTests.test_invalid_model_and_impossible_evidence) ... ok
+test_manual_marginal_and_conditional (test_bayesian.BayesianTests.test_manual_marginal_and_conditional) ... ok
+test_sampler_reproducibility_and_learning (test_bayesian.BayesianTests.test_sampler_reproducibility_and_learning) ... ok
+test_lower_bound_consistency_on_reachable_states (test_planning.PlanningTests.test_lower_bound_consistency_on_reachable_states) ... ok
+test_routes_capacity_and_drill (test_planning.PlanningTests.test_routes_capacity_and_drill) ... ok
+test_saved_plans_with_two_simulators (test_planning.PlanningTests.test_saved_plans_with_two_simulators) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.174s
+
+OK
+
+RUN: C:\Users\Lenovo\AppData\Local\Python\pythoncore-3.14-64\python.exe scripts/build_reports.py
+Built three analysis reports, combined Markdown/HTML report, and saved-output viewer.
+ALL RUNS AND CHECKS PASSED

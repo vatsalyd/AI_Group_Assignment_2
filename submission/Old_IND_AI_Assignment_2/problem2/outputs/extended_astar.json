@@ -1,0 +1,47 @@
+{
+  "scenario": "extended",
+  "search": "astar",
+  "heuristic": "handling + relaxed route / transport bound",
+  "planner": "pyperplan",
+  "planner_version": "2.1",
+  "plan_length": 40,
+  "total_actions": 40,
+  "action_counts": {
+    "move": 25,
+    "collect-soft": 4,
+    "pick-drill": 1,
+    "deposit": 7,
+    "collect-hard": 3
+  },
+  "nodes_expanded_including_goal": 153190,
+  "search_wall_seconds": 8.133757400035392,
+  "search_cpu_seconds": 8.109375,
+  "planning_wall_seconds": 8.147260700003244,
+  "grounded_operators": 216,
+  "validated": true,
+  "goal_facts": [
+    "(at curiosity base)",
+    "(empty bay1)",
+    "(empty bay2)",
+    "(rock-at rock1 base)",
+    "(rock-at rock2 base)",
+    "(rock-at rock3 base)",
+    "(rock-at rock4 base)",
+    "(rock-at rock5 base)",
+    "(rock-at rock6 base)",
+    "(rock-at rock7 base)"
+  ],
+  "final_dynamic_state": [
+    "(at curiosity base)",
+    "(empty bay1)",
+    "(empty bay2)",
+    "(has-drill curiosity)",
+    "(rock-at rock1 base)",
+    "(rock-at rock2 base)",
+    "(rock-at rock3 base)",
+    "(rock-at rock4 base)",
+    "(rock-at rock5 base)",
+    "(rock-at rock6 base)",
+    "(rock-at rock7 base)"
+  ]
+}

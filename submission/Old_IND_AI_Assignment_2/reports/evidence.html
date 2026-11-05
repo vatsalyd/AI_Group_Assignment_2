@@ -1,0 +1,528 @@
+<!doctype html><html lang="en"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>Verified program evidence</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:1120px;margin:36px auto;padding:0 24px;color:#182333}
+h1,h2,h3,h4{line-height:1.25}h1{border-bottom:2px solid #284c66;padding-bottom:12px}h2{margin-top:36px}
+table{border-collapse:collapse;width:100%;font-size:13px;margin:20px 0}td,th{border:1px solid #b9c6d2;padding:8px;text-align:left}
+th{background:#edf3f7}pre{background:#f1f4f7;padding:18px;white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.5 Consolas,monospace}
+code{font-size:.9em}img{max-width:100%}a{color:#175d91}.source{background:#eef4f7;padding:12px}
+@media print{body{margin:0;font-size:10pt;max-width:none}h2{break-after:avoid}tr,img{break-inside:avoid}pre{font-size:8pt}}
+</style><body><h1>Verified saved program outputs</h1><p>These views display actual saved run outputs. They are not live terminal sessions. Re-run commands are provided below and in the repository README.</p><nav><a href="#bayesian">Bayesian</a> | <a href="#planning">Planning</a> | <a href="#proof">Prolog proof</a></nav><section id="bayesian"><h2>Problem 1: Bayesian analysis</h2><p class="source">Source: problem1/outputs/run_output.txt<br>Run: python problem1/run_analysis.py</p><pre>SMART HOME BAYESIAN NETWORK
+Seed: 2026; nested dataset prefixes
+All CPTs and the full joint distribution sum to one.
+
+Expert queries:
+Q1: 0.5806310375
+Q2: 0.7062657500
+Q3: 0.6401985000
+Q4: 0.4842500000
+Q5: 0.6081880785
+Q6: 0.6928666813
+Q7: 0.6498993030
+
+N = 500
+Weather counts: {&#x27;Hot&#x27;: 270, &#x27;Mild&#x27;: 137, &#x27;Cold&#x27;: 93}
+Weather frequencies: {&#x27;Hot&#x27;: 0.54, &#x27;Mild&#x27;: 0.274, &#x27;Cold&#x27;: 0.186}
+Weather / occupancy counts:
+  Hot  High: 159
+  Hot  Low : 111
+  Mild High: 71
+  Mild Low : 66
+  Cold High: 45
+  Cold Low : 48
+AC CPT: W O | Expert(On) MLE(On) BDeu(On)
+  Hot  High | 0.900000 0.918239 0.913900
+  Hot  Low  | 0.600000 0.603604 0.602071
+  Mild High | 0.400000 0.380282 0.383028
+  Mild Low  | 0.150000 0.196970 0.204433
+  Cold High | 0.100000 0.088889 0.103571
+  Cold Low  | 0.050000 0.041667 0.057047
+Query | Expert | MLE | Bayesian | |Diff| MLE | |Diff| Bayesian
+Q1 | 0.580631038 | 0.592554211 | 0.590745732 | 0.011923173 | 0.010114694
+Q2 | 0.706265750 | 0.707970856 | 0.702865327 | 0.001705106 | 0.003400423
+Q3 | 0.640198500 | 0.653104782 | 0.646961488 | 0.012906282 | 0.006762988
+Q4 | 0.484250000 | 0.522060088 | 0.524402361 | 0.037810088 | 0.040152361
+Q5 | 0.608188078 | 0.645180230 | 0.637667009 | 0.036992152 | 0.029478931
+Q6 | 0.692866681 | 0.721506274 | 0.717685381 | 0.028639592 | 0.024818700
+Q7 | 0.649899303 | 0.651713775 | 0.649355322 | 0.001814472 | 0.000543981
+MLE mean absolute difference: 0.018827266
+BDeu mean absolute difference: 0.016467440
+Evidence counts Q1-Q7: [500, 270, 138, 45, 294, 294, 218]
+
+N = 5000
+Weather counts: {&#x27;Hot&#x27;: 2509, &#x27;Mild&#x27;: 1490, &#x27;Cold&#x27;: 1001}
+Weather frequencies: {&#x27;Hot&#x27;: 0.5018, &#x27;Mild&#x27;: 0.298, &#x27;Cold&#x27;: 0.2002}
+Weather / occupancy counts:
+  Hot  High: 1400
+  Hot  Low : 1109
+  Mild High: 817
+  Mild Low : 673
+  Cold High: 571
+  Cold Low : 430
+AC CPT: W O | Expert(On) MLE(On) BDeu(On)
+  Hot  High | 0.900000 0.915714 0.915220
+  Hot  Low  | 0.600000 0.605050 0.604892
+  Mild High | 0.400000 0.429621 0.429764
+  Mild Low  | 0.150000 0.158990 0.159832
+  Cold High | 0.100000 0.092820 0.094005
+  Cold Low  | 0.050000 0.041860 0.043629
+Query | Expert | MLE | Bayesian | |Diff| MLE | |Diff| Bayesian
+Q1 | 0.580631038 | 0.581638722 | 0.581483277 | 0.001007684 | 0.000852240
+Q2 | 0.706265750 | 0.706872714 | 0.706311878 | 0.000606964 | 0.000046128
+Q3 | 0.640198500 | 0.645648548 | 0.645009075 | 0.005450048 | 0.004810575
+Q4 | 0.484250000 | 0.486527559 | 0.486851614 | 0.002277559 | 0.002601614
+Q5 | 0.608188078 | 0.609843731 | 0.609114328 | 0.001655652 | 0.000926249
+Q6 | 0.692866681 | 0.705686149 | 0.705295867 | 0.012819468 | 0.012429186
+Q7 | 0.649899303 | 0.659934848 | 0.659657170 | 0.010035545 | 0.009757867
+MLE mean absolute difference: 0.004836132
+BDeu mean absolute difference: 0.004489123
+Evidence counts Q1-Q7: [5000, 2509, 1472, 571, 2903, 2903, 2152]
+
+N = 20000
+Weather counts: {&#x27;Hot&#x27;: 10068, &#x27;Mild&#x27;: 5956, &#x27;Cold&#x27;: 3976}
+Weather frequencies: {&#x27;Hot&#x27;: 0.5034, &#x27;Mild&#x27;: 0.2978, &#x27;Cold&#x27;: 0.1988}
+Weather / occupancy counts:
+  Hot  High: 5584
+  Hot  Low : 4484
+  Mild High: 3331
+  Mild Low : 2625
+  Cold High: 2198
+  Cold Low : 1778
+AC CPT: W O | Expert(On) MLE(On) BDeu(On)
+  Hot  High | 0.900000 0.907772 0.907651
+  Hot  Low  | 0.600000 0.604817 0.604778
+  Mild High | 0.400000 0.398079 0.398130
+  Mild Low  | 0.150000 0.139429 0.139657
+  Cold High | 0.100000 0.089627 0.089938
+  Cold Low  | 0.050000 0.042745 0.043173
+Query | Expert | MLE | Bayesian | |Diff| MLE | |Diff| Bayesian
+Q1 | 0.580631038 | 0.580005495 | 0.579967785 | 0.000625542 | 0.000663253
+Q2 | 0.706265750 | 0.710105206 | 0.709960033 | 0.003839456 | 0.003694283
+Q3 | 0.640198500 | 0.640395268 | 0.640242476 | 0.000196768 | 0.000043976
+Q4 | 0.484250000 | 0.475909815 | 0.476011086 | 0.008340185 | 0.008238914
+Q5 | 0.608188078 | 0.616316507 | 0.616126533 | 0.008128428 | 0.007938454
+Q6 | 0.692866681 | 0.698532051 | 0.698437440 | 0.005665370 | 0.005570758
+Q7 | 0.649899303 | 0.653660835 | 0.653595220 | 0.003761532 | 0.003695917
+MLE mean absolute difference: 0.004365326
+BDeu mean absolute difference: 0.004263651
+Evidence counts Q1-Q7: [20000, 10068, 5892, 2198, 11605, 11605, 8533]
+</pre><h3>Generated network figure</h3><img src="../problem1/outputs/network.png" alt="Bayesian network"><h3>Generated estimator comparison</h3><img src="../problem1/outputs/estimator_comparison.png" alt="Estimator errors"></section><section id="planning"><h2>Problem 2: verified planner output</h2><h3 id="original_gbfs">original_gbfs</h3><p class="source">Source: problem2/outputs/original_gbfs.log<br>Run: python problem2/run_planner.py --scenario original --search gbfs</p><pre>Relevance analysis removed 0 facts
+Initial h value: 17.000000
+Goal reached. Start extraction of solution.
+45 Nodes expanded
+
+{
+  &quot;scenario&quot;: &quot;original&quot;,
+  &quot;search&quot;: &quot;gbfs&quot;,
+  &quot;heuristic&quot;: &quot;hFF&quot;,
+  &quot;planner&quot;: &quot;pyperplan&quot;,
+  &quot;planner_version&quot;: &quot;2.1&quot;,
+  &quot;plan_length&quot;: 30,
+  &quot;total_actions&quot;: 30,
+  &quot;action_counts&quot;: {
+    &quot;move&quot;: 19,
+    &quot;collect-soft&quot;: 3,
+    &quot;deposit&quot;: 5,
+    &quot;pick-drill&quot;: 1,
+    &quot;collect-hard&quot;: 2
+  },
+  &quot;nodes_expanded_including_goal&quot;: 45,
+  &quot;search_wall_seconds&quot;: 0.02027259999886155,
+  &quot;search_cpu_seconds&quot;: 0.03125,
+  &quot;planning_wall_seconds&quot;: 0.03366539999842644,
+  &quot;grounded_operators&quot;: 162,
+  &quot;validated&quot;: true,
+  &quot;goal_facts&quot;: [
+    &quot;(at curiosity base)&quot;,
+    &quot;(empty bay1)&quot;,
+    &quot;(empty bay2)&quot;,
+    &quot;(rock-at rock1 base)&quot;,
+    &quot;(rock-at rock2 base)&quot;,
+    &quot;(rock-at rock3 base)&quot;,
+    &quot;(rock-at rock4 base)&quot;,
+    &quot;(rock-at rock5 base)&quot;
+  ],
+  &quot;final_dynamic_state&quot;: [
+    &quot;(at curiosity base)&quot;,
+    &quot;(empty bay1)&quot;,
+    &quot;(empty bay2)&quot;,
+    &quot;(has-drill curiosity)&quot;,
+    &quot;(rock-at rock1 base)&quot;,
+    &quot;(rock-at rock2 base)&quot;,
+    &quot;(rock-at rock3 base)&quot;,
+    &quot;(rock-at rock4 base)&quot;,
+    &quot;(rock-at rock5 base)&quot;
+  ]
+}
+
+PLAN
+01. (move curiosity base sitea)
+02. (collect-soft curiosity rock1 bay1 sitea)
+03. (move curiosity sitea base)
+04. (deposit curiosity rock1 bay1 base)
+05. (move curiosity base siteb)
+06. (collect-soft curiosity rock2 bay1 siteb)
+07. (move curiosity siteb base)
+08. (deposit curiosity rock2 bay1 base)
+09. (move curiosity base sitea)
+10. (move curiosity sitea sitec)
+11. (move curiosity sitec sitee)
+12. (pick-drill curiosity drill1 sitee)
+13. (move curiosity sitee sitec)
+14. (collect-hard curiosity rock3 bay1 sitec)
+15. (move curiosity sitec sited)
+16. (collect-soft curiosity rock4 bay2 sited)
+17. (move curiosity sited siteb)
+18. (move curiosity siteb base)
+19. (deposit curiosity rock3 bay1 base)
+20. (deposit curiosity rock4 bay2 base)
+21. (move curiosity base sitea)
+22. (move curiosity sitea sitec)
+23. (move curiosity sitec sitee)
+24. (move curiosity sitee sitef)
+25. (collect-hard curiosity rock5 bay1 sitef)
+26. (move curiosity sitef sitee)
+27. (move curiosity sitee sitec)
+28. (move curiosity sitec sitea)
+29. (move curiosity sitea base)
+30. (deposit curiosity rock5 bay1 base)
+
+FINAL GOALS VERIFIED
+(at curiosity base)
+(empty bay1)
+(empty bay2)
+(has-drill curiosity)
+(rock-at rock1 base)
+(rock-at rock2 base)
+(rock-at rock3 base)
+(rock-at rock4 base)
+(rock-at rock5 base)
+</pre><h3 id="original_astar">original_astar</h3><p class="source">Source: problem2/outputs/original_astar.log<br>Run: python problem2/run_planner.py --scenario original --search astar</p><pre>Relevance analysis removed 0 facts
+Initial h value: 19.000000
+Goal reached. Start extraction of solution.
+1327 Nodes expanded
+
+{
+  &quot;scenario&quot;: &quot;original&quot;,
+  &quot;search&quot;: &quot;astar&quot;,
+  &quot;heuristic&quot;: &quot;handling + relaxed route / transport bound&quot;,
+  &quot;planner&quot;: &quot;pyperplan&quot;,
+  &quot;planner_version&quot;: &quot;2.1&quot;,
+  &quot;plan_length&quot;: 25,
+  &quot;total_actions&quot;: 25,
+  &quot;action_counts&quot;: {
+    &quot;move&quot;: 14,
+    &quot;collect-soft&quot;: 3,
+    &quot;deposit&quot;: 5,
+    &quot;pick-drill&quot;: 1,
+    &quot;collect-hard&quot;: 2
+  },
+  &quot;nodes_expanded_including_goal&quot;: 1327,
+  &quot;search_wall_seconds&quot;: 0.04572530003497377,
+  &quot;search_cpu_seconds&quot;: 0.046875,
+  &quot;planning_wall_seconds&quot;: 0.058839600009378046,
+  &quot;grounded_operators&quot;: 162,
+  &quot;validated&quot;: true,
+  &quot;goal_facts&quot;: [
+    &quot;(at curiosity base)&quot;,
+    &quot;(empty bay1)&quot;,
+    &quot;(empty bay2)&quot;,
+    &quot;(rock-at rock1 base)&quot;,
+    &quot;(rock-at rock2 base)&quot;,
+    &quot;(rock-at rock3 base)&quot;,
+    &quot;(rock-at rock4 base)&quot;,
+    &quot;(rock-at rock5 base)&quot;
+  ],
+  &quot;final_dynamic_state&quot;: [
+    &quot;(at curiosity base)&quot;,
+    &quot;(empty bay1)&quot;,
+    &quot;(empty bay2)&quot;,
+    &quot;(has-drill curiosity)&quot;,
+    &quot;(rock-at rock1 base)&quot;,
+    &quot;(rock-at rock2 base)&quot;,
+    &quot;(rock-at rock3 base)&quot;,
+    &quot;(rock-at rock4 base)&quot;,
+    &quot;(rock-at rock5 base)&quot;
+  ]
+}
+
+PLAN
+01. (move curiosity base siteb)
+02. (collect-soft curiosity rock2 bay1 siteb)
+03. (move curiosity siteb sited)
+04. (collect-soft curiosity rock4 bay2 sited)
+05. (move curiosity sited siteb)
+06. (move curiosity siteb base)
+07. (deposit curiosity rock2 bay1 base)
+08. (deposit curiosity rock4 bay2 base)
+09. (move curiosity base sitea)
+10. (move curiosity sitea sitec)
+11. (move curiosity sitec sitee)
+12. (pick-drill curiosity drill1 sitee)
+13. (move curiosity sitee sitef)
+14. (collect-hard curiosity rock5 bay1 sitef)
+15. (move curiosity sitef sitee)
+16. (move curiosity sitee sitec)
+17. (collect-hard curiosity rock3 bay2 sitec)
+18. (move curiosity sitec sitea)
+19. (move curiosity sitea base)
+20. (deposit curiosity rock3 bay2 base)
+21. (deposit curiosity rock5 bay1 base)
+22. (move curiosity base sitea)
+23. (collect-soft curiosity rock1 bay1 sitea)
+24. (move curiosity sitea base)
+25. (deposit curiosity rock1 bay1 base)
+
+FINAL GOALS VERIFIED
+(at curiosity base)
+(empty bay1)
+(empty bay2)
+(has-drill curiosity)
+(rock-at rock1 base)
+(rock-at rock2 base)
+(rock-at rock3 base)
+(rock-at rock4 base)
+(rock-at rock5 base)
+</pre><h3 id="extended_gbfs">extended_gbfs</h3><p class="source">Source: problem2/outputs/extended_gbfs.log<br>Run: python problem2/run_planner.py --scenario extended --search gbfs</p><pre>Relevance analysis removed 0 facts
+Initial h value: 21.000000
+Goal reached. Start extraction of solution.
+91 Nodes expanded
+
+{
+  &quot;scenario&quot;: &quot;extended&quot;,
+  &quot;search&quot;: &quot;gbfs&quot;,
+  &quot;heuristic&quot;: &quot;hFF&quot;,
+  &quot;planner&quot;: &quot;pyperplan&quot;,
+  &quot;planner_version&quot;: &quot;2.1&quot;,
+  &quot;plan_length&quot;: 44,
+  &quot;total_actions&quot;: 44,
+  &quot;action_counts&quot;: {
+    &quot;move&quot;: 29,
+    &quot;collect-soft&quot;: 4,
+    &quot;deposit&quot;: 7,
+    &quot;pick-drill&quot;: 1,
+    &quot;collect-hard&quot;: 3
+  },
+  &quot;nodes_expanded_including_goal&quot;: 91,
+  &quot;search_wall_seconds&quot;: 0.05915619997540489,
+  &quot;search_cpu_seconds&quot;: 0.0625,
+  &quot;planning_wall_seconds&quot;: 0.07351949997246265,
+  &quot;grounded_operators&quot;: 216,
+  &quot;validated&quot;: true,
+  &quot;goal_facts&quot;: [
+    &quot;(at curiosity base)&quot;,
+    &quot;(empty bay1)&quot;,
+    &quot;(empty bay2)&quot;,
+    &quot;(rock-at rock1 base)&quot;,
+    &quot;(rock-at rock2 base)&quot;,
+    &quot;(rock-at rock3 base)&quot;,
+    &quot;(rock-at rock4 base)&quot;,
+    &quot;(rock-at rock5 base)&quot;,
+    &quot;(rock-at rock6 base)&quot;,
+    &quot;(rock-at rock7 base)&quot;
+  ],
+  &quot;final_dynamic_state&quot;: [
+    &quot;(at curiosity base)&quot;,
+    &quot;(empty bay1)&quot;,
+    &quot;(empty bay2)&quot;,
+    &quot;(has-drill curiosity)&quot;,
+    &quot;(rock-at rock1 base)&quot;,
+    &quot;(rock-at rock2 base)&quot;,
+    &quot;(rock-at rock3 base)&quot;,
+    &quot;(rock-at rock4 base)&quot;,
+    &quot;(rock-at rock5 base)&quot;,
+    &quot;(rock-at rock6 base)&quot;,
+    &quot;(rock-at rock7 base)&quot;
+  ]
+}
+
+PLAN
+01. (move curiosity base sitea)
+02. (collect-soft curiosity rock1 bay1 sitea)
+03. (move curiosity sitea base)
+04. (deposit curiosity rock1 bay1 base)
+05. (move curiosity base sitea)
+06. (move curiosity sitea sitec)
+07. (move curiosity sitec sitee)
+08. (pick-drill curiosity drill1 sitee)
+09. (collect-soft curiosity rock6 bay1 sitee)
+10. (move curiosity sitee sitec)
+11. (move curiosity sitec sitea)
+12. (move curiosity sitea base)
+13. (deposit curiosity rock6 bay1 base)
+14. (move curiosity base sitea)
+15. (move curiosity sitea sitec)
+16. (collect-hard curiosity rock3 bay1 sitec)
+17. (move curiosity sitec sitea)
+18. (move curiosity sitea base)
+19. (deposit curiosity rock3 bay1 base)
+20. (move curiosity base sitea)
+21. (move curiosity sitea sitec)
+22. (move curiosity sitec sited)
+23. (move curiosity sited siteb)
+24. (collect-soft curiosity rock2 bay1 siteb)
+25. (move curiosity siteb sited)
+26. (collect-soft curiosity rock4 bay2 sited)
+27. (move curiosity sited sitee)
+28. (move curiosity sitee sitec)
+29. (move curiosity sitec sitea)
+30. (move curiosity sitea base)
+31. (deposit curiosity rock2 bay1 base)
+32. (deposit curiosity rock4 bay2 base)
+33. (move curiosity base sitea)
+34. (move curiosity sitea sitec)
+35. (move curiosity sitec sitee)
+36. (move curiosity sitee sitef)
+37. (collect-hard curiosity rock5 bay1 sitef)
+38. (collect-hard curiosity rock7 bay2 sitef)
+39. (move curiosity sitef sitee)
+40. (move curiosity sitee sitec)
+41. (move curiosity sitec sitea)
+42. (move curiosity sitea base)
+43. (deposit curiosity rock5 bay1 base)
+44. (deposit curiosity rock7 bay2 base)
+
+FINAL GOALS VERIFIED
+(at curiosity base)
+(empty bay1)
+(empty bay2)
+(has-drill curiosity)
+(rock-at rock1 base)
+(rock-at rock2 base)
+(rock-at rock3 base)
+(rock-at rock4 base)
+(rock-at rock5 base)
+(rock-at rock6 base)
+(rock-at rock7 base)
+</pre><h3 id="extended_astar">extended_astar</h3><p class="source">Source: problem2/outputs/extended_astar.log<br>Run: python problem2/run_planner.py --scenario extended --search astar</p><pre>Relevance analysis removed 0 facts
+Initial h value: 27.000000
+Goal reached. Start extraction of solution.
+153190 Nodes expanded
+
+{
+  &quot;scenario&quot;: &quot;extended&quot;,
+  &quot;search&quot;: &quot;astar&quot;,
+  &quot;heuristic&quot;: &quot;handling + relaxed route / transport bound&quot;,
+  &quot;planner&quot;: &quot;pyperplan&quot;,
+  &quot;planner_version&quot;: &quot;2.1&quot;,
+  &quot;plan_length&quot;: 40,
+  &quot;total_actions&quot;: 40,
+  &quot;action_counts&quot;: {
+    &quot;move&quot;: 25,
+    &quot;collect-soft&quot;: 4,
+    &quot;pick-drill&quot;: 1,
+    &quot;deposit&quot;: 7,
+    &quot;collect-hard&quot;: 3
+  },
+  &quot;nodes_expanded_including_goal&quot;: 153190,
+  &quot;search_wall_seconds&quot;: 8.133757400035392,
+  &quot;search_cpu_seconds&quot;: 8.109375,
+  &quot;planning_wall_seconds&quot;: 8.147260700003244,
+  &quot;grounded_operators&quot;: 216,
+  &quot;validated&quot;: true,
+  &quot;goal_facts&quot;: [
+    &quot;(at curiosity base)&quot;,
+    &quot;(empty bay1)&quot;,
+    &quot;(empty bay2)&quot;,
+    &quot;(rock-at rock1 base)&quot;,
+    &quot;(rock-at rock2 base)&quot;,
+    &quot;(rock-at rock3 base)&quot;,
+    &quot;(rock-at rock4 base)&quot;,
+    &quot;(rock-at rock5 base)&quot;,
+    &quot;(rock-at rock6 base)&quot;,
+    &quot;(rock-at rock7 base)&quot;
+  ],
+  &quot;final_dynamic_state&quot;: [
+    &quot;(at curiosity base)&quot;,
+    &quot;(empty bay1)&quot;,
+    &quot;(empty bay2)&quot;,
+    &quot;(has-drill curiosity)&quot;,
+    &quot;(rock-at rock1 base)&quot;,
+    &quot;(rock-at rock2 base)&quot;,
+    &quot;(rock-at rock3 base)&quot;,
+    &quot;(rock-at rock4 base)&quot;,
+    &quot;(rock-at rock5 base)&quot;,
+    &quot;(rock-at rock6 base)&quot;,
+    &quot;(rock-at rock7 base)&quot;
+  ]
+}
+
+PLAN
+01. (move curiosity base sitea)
+02. (move curiosity sitea sitec)
+03. (move curiosity sitec sited)
+04. (collect-soft curiosity rock4 bay1 sited)
+05. (move curiosity sited siteb)
+06. (collect-soft curiosity rock2 bay2 siteb)
+07. (move curiosity siteb sited)
+08. (move curiosity sited sitee)
+09. (pick-drill curiosity drill1 sitee)
+10. (move curiosity sitee sitec)
+11. (move curiosity sitec sitea)
+12. (move curiosity sitea base)
+13. (deposit curiosity rock2 bay2 base)
+14. (deposit curiosity rock4 bay1 base)
+15. (move curiosity base sitea)
+16. (move curiosity sitea sitec)
+17. (move curiosity sitec sitee)
+18. (move curiosity sitee sitef)
+19. (collect-hard curiosity rock5 bay1 sitef)
+20. (collect-hard curiosity rock7 bay2 sitef)
+21. (move curiosity sitef sitee)
+22. (move curiosity sitee sitec)
+23. (move curiosity sitec sitea)
+24. (move curiosity sitea base)
+25. (deposit curiosity rock5 bay1 base)
+26. (deposit curiosity rock7 bay2 base)
+27. (move curiosity base sitea)
+28. (move curiosity sitea sitec)
+29. (move curiosity sitec sitee)
+30. (collect-soft curiosity rock6 bay1 sitee)
+31. (move curiosity sitee sitec)
+32. (collect-hard curiosity rock3 bay2 sitec)
+33. (move curiosity sitec sitea)
+34. (move curiosity sitea base)
+35. (deposit curiosity rock3 bay2 base)
+36. (deposit curiosity rock6 bay1 base)
+37. (move curiosity base sitea)
+38. (collect-soft curiosity rock1 bay1 sitea)
+39. (move curiosity sitea base)
+40. (deposit curiosity rock1 bay1 base)
+
+FINAL GOALS VERIFIED
+(at curiosity base)
+(empty bay1)
+(empty bay2)
+(has-drill curiosity)
+(rock-at rock1 base)
+(rock-at rock2 base)
+(rock-at rock3 base)
+(rock-at rock4 base)
+(rock-at rock5 base)
+(rock-at rock6 base)
+(rock-at rock7 base)
+</pre></section><section id="proof"><h2>Problem 3: executed resolution proof</h2><p class="source">Source: problem3/outputs/proof_output.txt (SWI-Prolog 10.0.2)<br>Run: swipl -q -s problem3/royal_archive_access.pl -g main -t halt</p><pre>RESOLUTION TRACE
+C11 = resolve(C1, C10)
+  pivot before unification: trusted(A)-trusted(mira)
+  variable values before-after: [A,B]-[mira,C]
+  resolvent: [neg(archivist(mira)),neg(verifies(mira,A))]
+C12 = resolve(C9, C11)
+  pivot before unification: archivist(mira)-archivist(mira)
+  variable values before-after: [A]-[B]
+  resolvent: [neg(verifies(mira,A))]
+C13 = resolve(C3, C12)
+  pivot before unification: verifies(A,B)-verifies(mira,C)
+  variable values before-after: [A,B,C]-[mira,D,D]
+  resolvent: [neg(finds_mark(mira,A)),neg(inspects(mira,A))]
+C14 = resolve(C7, C13)
+  pivot before unification: inspects(mira,scroll_7)-inspects(mira,A)
+  variable values before-after: [A]-[scroll_7]
+  resolvent: [neg(finds_mark(mira,scroll_7))]
+C15 = resolve(C8, C14)
+  pivot before unification: finds_mark(mira,scroll_7)-finds_mark(mira,scroll_7)
+  variable values before-after: []-[]
+  resolvent: []
+
+C15 = [] (empty clause). Contradiction derived.
+VERIFIED: trusted(mira) follows from the knowledge base.
+SELF-TEST PASS: replayed proof, no assumed goal, unification, required facts.
+</pre></section></body></html>

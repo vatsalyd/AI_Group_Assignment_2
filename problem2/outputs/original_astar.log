@@ -19,9 +19,9 @@ Goal reached. Start extraction of solution.
     "collect-hard": 2
   },
   "nodes_expanded_including_goal": 1327,
-  "search_wall_seconds": 0.04572530003497377,
-  "search_cpu_seconds": 0.046875,
-  "planning_wall_seconds": 0.058839600009378046,
+  "search_wall_seconds": 0.04602029995294288,
+  "search_cpu_seconds": 0.03125,
+  "planning_wall_seconds": 0.06303659995319322,
   "grounded_operators": 162,
   "validated": true,
   "goal_facts": [

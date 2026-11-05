@@ -1,0 +1,1588 @@
+<!doctype html><html lang="en"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>Old I.N.D - Assignment 2</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:1120px;margin:36px auto;padding:0 24px;color:#182333}
+h1,h2,h3,h4{line-height:1.25}h1{border-bottom:2px solid #284c66;padding-bottom:12px}h2{margin-top:36px}
+table{border-collapse:collapse;width:100%;font-size:13px;margin:20px 0}td,th{border:1px solid #b9c6d2;padding:8px;text-align:left}
+th{background:#edf3f7}pre{background:#f1f4f7;padding:18px;white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.5 Consolas,monospace}
+code{font-size:.9em}img{max-width:100%}a{color:#175d91}.source{background:#eef4f7;padding:12px}
+@media print{body{margin:0;font-size:10pt;max-width:none}h2{break-after:avoid}tr,img{break-inside:avoid}pre{font-size:8pt}}
+</style><body><h1>AI Group Assignment 2</h1>
+<h2>Group members</h2>
+<p>Group: <strong>Old I.N.D</strong></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Roll number</th>
+<th>Assigned work and review</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vatsal Yadav</td>
+<td>B24DS036</td>
+<td>Problem 1, Parts A-B: expert network, inference, hand calculation, independence</td>
+</tr>
+<tr>
+<td>Rudra Dudhat</td>
+<td>B24DS506</td>
+<td>Problem 1, Parts C-E: sampling, parameter learning, comparisons</td>
+</tr>
+<tr>
+<td>Aryan Kose</td>
+<td>B24EE009</td>
+<td>Problem 2, Tasks 1-6: PDDL, planning, verification, analysis</td>
+</tr>
+<tr>
+<td>S Aparajith</td>
+<td>B24DS50</td>
+<td>Problem 3, Tasks 1-6: FOL, CNF, Prolog, resolution proof</td>
+</tr>
+</tbody>
+</table>
+<p>All members: reproduce assigned results, capture genuine screenshots, review the
+report, and check the final ZIP. This is a proposed responsibility allocation,
+not a claim that each member has already completed or authored those sections.</p>
+<p>Names and roll numbers are recorded exactly as supplied, including <code>B24DS50</code>.</p>
+<h1>Problem 1: Smart home energy consumption</h1>
+<h2>A. Expert network and inference</h2>
+<p>The network has edges D -&gt; O, W -&gt; A, O -&gt; A, O -&gt; L, A -&gt; E,
+and L -&gt; E. Its factorization is</p>
+<p><code>P(W,D,O,A,L,E) = P(W) P(D) P(O|D) P(A|W,O) P(L|O) P(E|A,L)</code>.</p>
+<p>W is Weather, D is DayType, O is Occupancy, A is AC usage, L is ApplianceLoad,
+and E is EnergyConsumption. The state labels follow the assignment. The code
+constructs each CPT explicitly, checks each parent configuration sums to one,
+and checks the 96-row joint distribution sums to one. Inference sums compatible
+joint probabilities and divides by the probability of the evidence.</p>
+<p><img src="../problem1/outputs/network.png" alt="Expert Bayesian network" /></p>
+<h3>Expert CPTs</h3>
+<p>Each row below lists probabilities in the stated state order.</p>
+<p><strong>W</strong>: states Hot, Mild, Cold; parents none.</p>
+<table>
+<thead>
+<tr>
+<th>Parent configuration</th>
+<th>Hot</th>
+<th>Mild</th>
+<th>Cold</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>prior</td>
+<td>0.5000</td>
+<td>0.3000</td>
+<td>0.2000</td>
+</tr>
+</tbody>
+</table>
+<p><strong>D</strong>: states Weekday, Weekend; parents none.</p>
+<table>
+<thead>
+<tr>
+<th>Parent configuration</th>
+<th>Weekday</th>
+<th>Weekend</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>prior</td>
+<td>0.7000</td>
+<td>0.3000</td>
+</tr>
+</tbody>
+</table>
+<p><strong>O</strong>: states High, Low; parents D.</p>
+<table>
+<thead>
+<tr>
+<th>Parent configuration</th>
+<th>High</th>
+<th>Low</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Weekday</td>
+<td>0.4500</td>
+<td>0.5500</td>
+</tr>
+<tr>
+<td>Weekend</td>
+<td>0.8000</td>
+<td>0.2000</td>
+</tr>
+</tbody>
+</table>
+<p><strong>A</strong>: states On, Off; parents W, O.</p>
+<table>
+<thead>
+<tr>
+<th>Parent configuration</th>
+<th>On</th>
+<th>Off</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hot, High</td>
+<td>0.9000</td>
+<td>0.1000</td>
+</tr>
+<tr>
+<td>Hot, Low</td>
+<td>0.6000</td>
+<td>0.4000</td>
+</tr>
+<tr>
+<td>Mild, High</td>
+<td>0.4000</td>
+<td>0.6000</td>
+</tr>
+<tr>
+<td>Mild, Low</td>
+<td>0.1500</td>
+<td>0.8500</td>
+</tr>
+<tr>
+<td>Cold, High</td>
+<td>0.1000</td>
+<td>0.9000</td>
+</tr>
+<tr>
+<td>Cold, Low</td>
+<td>0.0500</td>
+<td>0.9500</td>
+</tr>
+</tbody>
+</table>
+<p><strong>L</strong>: states Heavy, Light; parents O.</p>
+<table>
+<thead>
+<tr>
+<th>Parent configuration</th>
+<th>Heavy</th>
+<th>Light</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>High</td>
+<td>0.7500</td>
+<td>0.2500</td>
+</tr>
+<tr>
+<td>Low</td>
+<td>0.3500</td>
+<td>0.6500</td>
+</tr>
+</tbody>
+</table>
+<p><strong>E</strong>: states High, Low; parents A, L.</p>
+<table>
+<thead>
+<tr>
+<th>Parent configuration</th>
+<th>High</th>
+<th>Low</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>On, Heavy</td>
+<td>0.9200</td>
+<td>0.0800</td>
+</tr>
+<tr>
+<td>On, Light</td>
+<td>0.6800</td>
+<td>0.3200</td>
+</tr>
+<tr>
+<td>Off, Heavy</td>
+<td>0.5500</td>
+<td>0.4500</td>
+</tr>
+<tr>
+<td>Off, Light</td>
+<td>0.1200</td>
+<td>0.8800</td>
+</tr>
+</tbody>
+</table>
+<h3>Query results</h3>
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Probability</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q1</td>
+<td>P(E=High)</td>
+<td>0.5806310375</td>
+</tr>
+<tr>
+<td>Q2</td>
+<td>P(E=High given W=Hot)</td>
+<td>0.7062657500</td>
+</tr>
+<tr>
+<td>Q3</td>
+<td>P(E=High given D=Weekend)</td>
+<td>0.6401985000</td>
+</tr>
+<tr>
+<td>Q4</td>
+<td>P(E=High given W=Cold, O=High)</td>
+<td>0.4842500000</td>
+</tr>
+<tr>
+<td>Q5</td>
+<td>P(W=Hot given E=High)</td>
+<td>0.6081880785</td>
+</tr>
+<tr>
+<td>Q6</td>
+<td>P(A=On given E=High)</td>
+<td>0.6928666813</td>
+</tr>
+<tr>
+<td>Q7</td>
+<td>P(A=On given E=High, L=Heavy)</td>
+<td>0.6498993030</td>
+</tr>
+</tbody>
+</table>
+<h3>Explaining away</h3>
+<p>Q6 is 0.6928666813 and Q7 is 0.6498993030. Observing high consumption makes
+heavy AC use more likely. Once heavy appliance load is known, it provides
+another explanation for high consumption, so the posterior probability of
+AC use decreases. A and L also share the ancestor O; they are not marginally
+independent causes. The numerical comparison still shows the explaining-away
+effect requested in the assignment.</p>
+<h3>Q1 by hand</h3>
+<p>Sum out the five other variables:</p>
+<p><code>P(E=High) = sum_w sum_d sum_o sum_a sum_l P(w)P(d)P(o|d)P(a|w,o)P(l|o)P(E=High|a,l)</code>.</p>
+<p>First, <code>P(O=High) = 0.70*0.45 + 0.30*0.80 = 0.555</code>, so <code>P(O=Low)=0.445</code>.
+W is independent of O because the unconditioned paths between them contain
+colliders. For fixed w,o, write a=P(A=On|w,o) and l=P(L=Heavy|o).
+Then summing the four A,L configurations gives</p>
+<p><code>g(w,o) = 0.92*a*l + 0.68*a*(1-l) + 0.55*(1-a)*l + 0.12*(1-a)*(1-l)</code></p>
+<p><code>= 0.12 + 0.56*a + 0.43*l - 0.19*a*l</code>.</p>
+<p>For O=High this is <code>0.4425 + 0.4175*a</code>; for O=Low it is
+<code>0.2705 + 0.4935*a</code>. The remaining sum has six terms:</p>
+<table>
+<thead>
+<tr>
+<th>W</th>
+<th>O</th>
+<th>P(w)P(o)</th>
+<th>g(w,o)</th>
+<th>Contribution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hot</td>
+<td>High</td>
+<td>0.277500</td>
+<td>0.81825000</td>
+<td>0.2270643750</td>
+</tr>
+<tr>
+<td>Hot</td>
+<td>Low</td>
+<td>0.222500</td>
+<td>0.56660000</td>
+<td>0.1260685000</td>
+</tr>
+<tr>
+<td>Mild</td>
+<td>High</td>
+<td>0.166500</td>
+<td>0.60950000</td>
+<td>0.1014817500</td>
+</tr>
+<tr>
+<td>Mild</td>
+<td>Low</td>
+<td>0.133500</td>
+<td>0.34452500</td>
+<td>0.0459940875</td>
+</tr>
+<tr>
+<td>Cold</td>
+<td>High</td>
+<td>0.111000</td>
+<td>0.48425000</td>
+<td>0.0537517500</td>
+</tr>
+<tr>
+<td>Cold</td>
+<td>Low</td>
+<td>0.089000</td>
+<td>0.29517500</td>
+<td>0.0262705750</td>
+</tr>
+</tbody>
+</table>
+<p>Adding these contributions gives <strong>0.5806310375</strong>, matching exact code
+inference to floating-point precision.</p>
+<h2>B. Conditional independence</h2>
+<ol>
+<li><strong>W is independent of D.</strong> The simple paths W -&gt; A &lt;- O &lt;- D and
+W -&gt; A -&gt; E &lt;- L &lt;- O &lt;- D are blocked by colliders A and E respectively.</li>
+<li><strong>W is not independent of D given E.</strong> Conditioning on E opens the collider
+E in the second path. E is also a descendant of collider A, so observing E
+opens the first path.</li>
+<li><strong>W is independent of L given O.</strong> The path W -&gt; A &lt;- O -&gt; L is blocked by
+conditioned noncollider O (and its unobserved collider A). The other path
+W -&gt; A -&gt; E &lt;- L is blocked by the unobserved collider E.</li>
+</ol>
+<p>Numerical checks:</p>
+<table>
+<thead>
+<tr>
+<th>Comparison</th>
+<th>First value</th>
+<th>Second value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P(W=Hot) vs P(W=Hot given D=Weekend)</td>
+<td>0.5000000000</td>
+<td>0.5000000000</td>
+</tr>
+<tr>
+<td>P(W=Hot given E=High) vs also D=Weekend</td>
+<td>0.6081880785</td>
+<td>0.5997514833</td>
+</tr>
+<tr>
+<td>P(W=Hot given O=High) vs also L=Heavy</td>
+<td>0.5000000000</td>
+<td>0.5000000000</td>
+</tr>
+</tbody>
+</table>
+<p><code>independence_checks.csv</code> checks every W,D state pair unconditionally and
+for both E values, and every W,L state pair for both O values. Independence
+uses joint-versus-product comparisons; one unequal pair is sufficient to
+disprove conditional independence.</p>
+<h2>C. Synthetic data</h2>
+<p>The sampler is implemented directly, without a library sampling routine.
+It visits W,D,O,A,L,E in topological order and draws each state using the
+appropriate CPT cumulative probability. The seed is <strong>2026</strong>, using Python's
+<code>random.Random</code>. Generate 20,000 rows once and take prefixes of length 500,
+5,000, and 20,000. The datasets are nested, not independent replicates.
+The three CSV files contain the actual generated data.</p>
+<h3>Dataset size 500</h3>
+<table>
+<thead>
+<tr>
+<th>Weather</th>
+<th>Count</th>
+<th>Frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hot</td>
+<td>270</td>
+<td>0.540000</td>
+</tr>
+<tr>
+<td>Mild</td>
+<td>137</td>
+<td>0.274000</td>
+</tr>
+<tr>
+<td>Cold</td>
+<td>93</td>
+<td>0.186000</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Weather</th>
+<th>Occupancy</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hot</td>
+<td>High</td>
+<td>159</td>
+</tr>
+<tr>
+<td>Hot</td>
+<td>Low</td>
+<td>111</td>
+</tr>
+<tr>
+<td>Mild</td>
+<td>High</td>
+<td>71</td>
+</tr>
+<tr>
+<td>Mild</td>
+<td>Low</td>
+<td>66</td>
+</tr>
+<tr>
+<td>Cold</td>
+<td>High</td>
+<td>45</td>
+</tr>
+<tr>
+<td>Cold</td>
+<td>Low</td>
+<td>48</td>
+</tr>
+</tbody>
+</table>
+<h3>Dataset size 5000</h3>
+<table>
+<thead>
+<tr>
+<th>Weather</th>
+<th>Count</th>
+<th>Frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hot</td>
+<td>2509</td>
+<td>0.501800</td>
+</tr>
+<tr>
+<td>Mild</td>
+<td>1490</td>
+<td>0.298000</td>
+</tr>
+<tr>
+<td>Cold</td>
+<td>1001</td>
+<td>0.200200</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Weather</th>
+<th>Occupancy</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hot</td>
+<td>High</td>
+<td>1400</td>
+</tr>
+<tr>
+<td>Hot</td>
+<td>Low</td>
+<td>1109</td>
+</tr>
+<tr>
+<td>Mild</td>
+<td>High</td>
+<td>817</td>
+</tr>
+<tr>
+<td>Mild</td>
+<td>Low</td>
+<td>673</td>
+</tr>
+<tr>
+<td>Cold</td>
+<td>High</td>
+<td>571</td>
+</tr>
+<tr>
+<td>Cold</td>
+<td>Low</td>
+<td>430</td>
+</tr>
+</tbody>
+</table>
+<h3>Dataset size 20000</h3>
+<table>
+<thead>
+<tr>
+<th>Weather</th>
+<th>Count</th>
+<th>Frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hot</td>
+<td>10068</td>
+<td>0.503400</td>
+</tr>
+<tr>
+<td>Mild</td>
+<td>5956</td>
+<td>0.297800</td>
+</tr>
+<tr>
+<td>Cold</td>
+<td>3976</td>
+<td>0.198800</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Weather</th>
+<th>Occupancy</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hot</td>
+<td>High</td>
+<td>5584</td>
+</tr>
+<tr>
+<td>Hot</td>
+<td>Low</td>
+<td>4484</td>
+</tr>
+<tr>
+<td>Mild</td>
+<td>High</td>
+<td>3331</td>
+</tr>
+<tr>
+<td>Mild</td>
+<td>Low</td>
+<td>2625</td>
+</tr>
+<tr>
+<td>Cold</td>
+<td>High</td>
+<td>2198</td>
+</tr>
+<tr>
+<td>Cold</td>
+<td>Low</td>
+<td>1778</td>
+</tr>
+</tbody>
+</table>
+<h2>D. Parameter learning</h2>
+<p>The structure is held fixed for both estimators. For node i with r states,
+q parent configurations, counts N_ijk, and parent count N_ij:</p>
+<ul>
+<li>MLE: <code>theta_ijk = N_ijk / N_ij</code>.</li>
+<li>Bayesian BDeu posterior mean: <code>theta_ijk = (N_ijk + 10/(r*q)) / (N_ij + 10/q)</code>.</li>
+</ul>
+<p>The equivalent sample size is <strong>10 per node</strong>, spread uniformly over all its
+CPT cells. Parameters are learned for every node, including both roots. State
+spaces are fixed to the specification. All observed datasets contain every
+parent configuration, so the uniform fallback for an unidentified MLE row is
+never used. Full learned CPTs are saved in the six <code>cpts_*.json</code> files.</p>
+<h3>Learned AC CPTs</h3>
+<p>Both On and Off probabilities are shown beside the expert CPT.</p>
+<h4>N = 500</h4>
+<table>
+<thead>
+<tr>
+<th>Weather</th>
+<th>Occupancy</th>
+<th>Expert_On</th>
+<th>Expert_Off</th>
+<th>MLE_On</th>
+<th>MLE_Off</th>
+<th>BDeu_On</th>
+<th>BDeu_Off</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hot</td>
+<td>High</td>
+<td>0.900000000</td>
+<td>0.100000000</td>
+<td>0.918238994</td>
+<td>0.081761006</td>
+<td>0.913900415</td>
+<td>0.086099585</td>
+</tr>
+<tr>
+<td>Hot</td>
+<td>Low</td>
+<td>0.600000000</td>
+<td>0.400000000</td>
+<td>0.603603604</td>
+<td>0.396396396</td>
+<td>0.602071006</td>
+<td>0.397928994</td>
+</tr>
+<tr>
+<td>Mild</td>
+<td>High</td>
+<td>0.400000000</td>
+<td>0.600000000</td>
+<td>0.380281690</td>
+<td>0.619718310</td>
+<td>0.383027523</td>
+<td>0.616972477</td>
+</tr>
+<tr>
+<td>Mild</td>
+<td>Low</td>
+<td>0.150000000</td>
+<td>0.850000000</td>
+<td>0.196969697</td>
+<td>0.803030303</td>
+<td>0.204433498</td>
+<td>0.795566502</td>
+</tr>
+<tr>
+<td>Cold</td>
+<td>High</td>
+<td>0.100000000</td>
+<td>0.900000000</td>
+<td>0.088888889</td>
+<td>0.911111111</td>
+<td>0.103571429</td>
+<td>0.896428571</td>
+</tr>
+<tr>
+<td>Cold</td>
+<td>Low</td>
+<td>0.050000000</td>
+<td>0.950000000</td>
+<td>0.041666667</td>
+<td>0.958333333</td>
+<td>0.057046980</td>
+<td>0.942953020</td>
+</tr>
+</tbody>
+</table>
+<h4>N = 5000</h4>
+<table>
+<thead>
+<tr>
+<th>Weather</th>
+<th>Occupancy</th>
+<th>Expert_On</th>
+<th>Expert_Off</th>
+<th>MLE_On</th>
+<th>MLE_Off</th>
+<th>BDeu_On</th>
+<th>BDeu_Off</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hot</td>
+<td>High</td>
+<td>0.900000000</td>
+<td>0.100000000</td>
+<td>0.915714286</td>
+<td>0.084285714</td>
+<td>0.915219976</td>
+<td>0.084780024</td>
+</tr>
+<tr>
+<td>Hot</td>
+<td>Low</td>
+<td>0.600000000</td>
+<td>0.400000000</td>
+<td>0.605049594</td>
+<td>0.394950406</td>
+<td>0.604891957</td>
+<td>0.395108043</td>
+</tr>
+<tr>
+<td>Mild</td>
+<td>High</td>
+<td>0.400000000</td>
+<td>0.600000000</td>
+<td>0.429620563</td>
+<td>0.570379437</td>
+<td>0.429763844</td>
+<td>0.570236156</td>
+</tr>
+<tr>
+<td>Mild</td>
+<td>Low</td>
+<td>0.150000000</td>
+<td>0.850000000</td>
+<td>0.158989599</td>
+<td>0.841010401</td>
+<td>0.159832016</td>
+<td>0.840167984</td>
+</tr>
+<tr>
+<td>Cold</td>
+<td>High</td>
+<td>0.100000000</td>
+<td>0.900000000</td>
+<td>0.092819615</td>
+<td>0.907180385</td>
+<td>0.094004657</td>
+<td>0.905995343</td>
+</tr>
+<tr>
+<td>Cold</td>
+<td>Low</td>
+<td>0.050000000</td>
+<td>0.950000000</td>
+<td>0.041860465</td>
+<td>0.958139535</td>
+<td>0.043629344</td>
+<td>0.956370656</td>
+</tr>
+</tbody>
+</table>
+<h4>N = 20000</h4>
+<table>
+<thead>
+<tr>
+<th>Weather</th>
+<th>Occupancy</th>
+<th>Expert_On</th>
+<th>Expert_Off</th>
+<th>MLE_On</th>
+<th>MLE_Off</th>
+<th>BDeu_On</th>
+<th>BDeu_Off</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hot</td>
+<td>High</td>
+<td>0.900000000</td>
+<td>0.100000000</td>
+<td>0.907772206</td>
+<td>0.092227794</td>
+<td>0.907650534</td>
+<td>0.092349466</td>
+</tr>
+<tr>
+<td>Hot</td>
+<td>Low</td>
+<td>0.600000000</td>
+<td>0.400000000</td>
+<td>0.604817128</td>
+<td>0.395182872</td>
+<td>0.604778182</td>
+<td>0.395221818</td>
+</tr>
+<tr>
+<td>Mild</td>
+<td>High</td>
+<td>0.400000000</td>
+<td>0.600000000</td>
+<td>0.398078655</td>
+<td>0.601921345</td>
+<td>0.398129626</td>
+<td>0.601870374</td>
+</tr>
+<tr>
+<td>Mild</td>
+<td>Low</td>
+<td>0.150000000</td>
+<td>0.850000000</td>
+<td>0.139428571</td>
+<td>0.860571429</td>
+<td>0.139657360</td>
+<td>0.860342640</td>
+</tr>
+<tr>
+<td>Cold</td>
+<td>High</td>
+<td>0.100000000</td>
+<td>0.900000000</td>
+<td>0.089626934</td>
+<td>0.910373066</td>
+<td>0.089937869</td>
+<td>0.910062131</td>
+</tr>
+<tr>
+<td>Cold</td>
+<td>Low</td>
+<td>0.050000000</td>
+<td>0.950000000</td>
+<td>0.042744657</td>
+<td>0.957255343</td>
+<td>0.043172879</td>
+<td>0.956827121</td>
+</tr>
+</tbody>
+</table>
+<h2>E. Comparison of query results</h2>
+<p>Absolute differences use the unrounded computed values.</p>
+<h3>N = 500</h3>
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Expert</th>
+<th>MLE</th>
+<th>Bayesian</th>
+<th>AbsDiff_MLE</th>
+<th>AbsDiff_Bayesian</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q1</td>
+<td>0.580631038</td>
+<td>0.592554211</td>
+<td>0.590745732</td>
+<td>0.011923173</td>
+<td>0.010114694</td>
+</tr>
+<tr>
+<td>Q2</td>
+<td>0.706265750</td>
+<td>0.707970856</td>
+<td>0.702865327</td>
+<td>0.001705106</td>
+<td>0.003400423</td>
+</tr>
+<tr>
+<td>Q3</td>
+<td>0.640198500</td>
+<td>0.653104782</td>
+<td>0.646961488</td>
+<td>0.012906282</td>
+<td>0.006762988</td>
+</tr>
+<tr>
+<td>Q4</td>
+<td>0.484250000</td>
+<td>0.522060088</td>
+<td>0.524402361</td>
+<td>0.037810088</td>
+<td>0.040152361</td>
+</tr>
+<tr>
+<td>Q5</td>
+<td>0.608188078</td>
+<td>0.645180230</td>
+<td>0.637667009</td>
+<td>0.036992152</td>
+<td>0.029478931</td>
+</tr>
+<tr>
+<td>Q6</td>
+<td>0.692866681</td>
+<td>0.721506274</td>
+<td>0.717685381</td>
+<td>0.028639592</td>
+<td>0.024818700</td>
+</tr>
+<tr>
+<td>Q7</td>
+<td>0.649899303</td>
+<td>0.651713775</td>
+<td>0.649355322</td>
+<td>0.001814472</td>
+<td>0.000543981</td>
+</tr>
+</tbody>
+</table>
+<h3>N = 5000</h3>
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Expert</th>
+<th>MLE</th>
+<th>Bayesian</th>
+<th>AbsDiff_MLE</th>
+<th>AbsDiff_Bayesian</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q1</td>
+<td>0.580631038</td>
+<td>0.581638722</td>
+<td>0.581483277</td>
+<td>0.001007684</td>
+<td>0.000852240</td>
+</tr>
+<tr>
+<td>Q2</td>
+<td>0.706265750</td>
+<td>0.706872714</td>
+<td>0.706311878</td>
+<td>0.000606964</td>
+<td>4.61278060045478e-05</td>
+</tr>
+<tr>
+<td>Q3</td>
+<td>0.640198500</td>
+<td>0.645648548</td>
+<td>0.645009075</td>
+<td>0.005450048</td>
+<td>0.004810575</td>
+</tr>
+<tr>
+<td>Q4</td>
+<td>0.484250000</td>
+<td>0.486527559</td>
+<td>0.486851614</td>
+<td>0.002277559</td>
+<td>0.002601614</td>
+</tr>
+<tr>
+<td>Q5</td>
+<td>0.608188078</td>
+<td>0.609843731</td>
+<td>0.609114328</td>
+<td>0.001655652</td>
+<td>0.000926249</td>
+</tr>
+<tr>
+<td>Q6</td>
+<td>0.692866681</td>
+<td>0.705686149</td>
+<td>0.705295867</td>
+<td>0.012819468</td>
+<td>0.012429186</td>
+</tr>
+<tr>
+<td>Q7</td>
+<td>0.649899303</td>
+<td>0.659934848</td>
+<td>0.659657170</td>
+<td>0.010035545</td>
+<td>0.009757867</td>
+</tr>
+</tbody>
+</table>
+<h3>N = 20000</h3>
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Expert</th>
+<th>MLE</th>
+<th>Bayesian</th>
+<th>AbsDiff_MLE</th>
+<th>AbsDiff_Bayesian</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q1</td>
+<td>0.580631038</td>
+<td>0.580005495</td>
+<td>0.579967785</td>
+<td>0.000625542</td>
+<td>0.000663253</td>
+</tr>
+<tr>
+<td>Q2</td>
+<td>0.706265750</td>
+<td>0.710105206</td>
+<td>0.709960033</td>
+<td>0.003839456</td>
+<td>0.003694283</td>
+</tr>
+<tr>
+<td>Q3</td>
+<td>0.640198500</td>
+<td>0.640395268</td>
+<td>0.640242476</td>
+<td>0.000196768</td>
+<td>4.397587802085212e-05</td>
+</tr>
+<tr>
+<td>Q4</td>
+<td>0.484250000</td>
+<td>0.475909815</td>
+<td>0.476011086</td>
+<td>0.008340185</td>
+<td>0.008238914</td>
+</tr>
+<tr>
+<td>Q5</td>
+<td>0.608188078</td>
+<td>0.616316507</td>
+<td>0.616126533</td>
+<td>0.008128428</td>
+<td>0.007938454</td>
+</tr>
+<tr>
+<td>Q6</td>
+<td>0.692866681</td>
+<td>0.698532051</td>
+<td>0.698437440</td>
+<td>0.005665370</td>
+<td>0.005570758</td>
+</tr>
+<tr>
+<td>Q7</td>
+<td>0.649899303</td>
+<td>0.653660835</td>
+<td>0.653595220</td>
+<td>0.003761532</td>
+<td>0.003695917</td>
+</tr>
+</tbody>
+</table>
+<h3>Mean absolute difference</h3>
+<table>
+<thead>
+<tr>
+<th>Dataset size</th>
+<th>MLE</th>
+<th>BDeu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>500</td>
+<td>0.018827266</td>
+<td>0.016467440</td>
+</tr>
+<tr>
+<td>5000</td>
+<td>0.004836132</td>
+<td>0.004489123</td>
+</tr>
+<tr>
+<td>20000</td>
+<td>0.004365326</td>
+<td>0.004263651</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../problem1/outputs/estimator_comparison.png" alt="Mean absolute difference versus dataset size" /></p>
+<h3>Largest error at N=500</h3>
+<p>Q4 is the largest-error query for both estimators: MLE error <strong>0.037810088</strong>,
+BDeu error <strong>0.040152361</strong>. Its evidence W=Cold,O=High has probability
+<code>0.20*0.555=0.111</code>, or 55.5 expected observations in 500 samples. The actual
+dataset has only <strong>45</strong> such rows. This gives relatively little information
+about the corresponding AC CPT row. Q4 also uses the learned appliance and
+energy CPTs, so its error is not determined by that single evidence count.</p>
+<h3>Which estimator performs better?</h3>
+<p>For this seeded 500-sample dataset, BDeu has the smaller mean absolute
+difference: 0.016467440 versus MLE's 0.018827266. Its pseudocounts reduce
+variance in sparsely observed CPT rows. This comes with shrinkage toward
+uniform probabilities, which can add bias: BDeu is worse on Q2 and Q4 in
+this run. It is therefore better on average here, not uniformly better.
+Both estimators improve in average error across these three dataset sizes.
+Individual queries need not improve monotonically; Q4 worsens between
+5,000 and 20,000 rows. One seeded experiment does not establish universal
+estimator superiority.</p>
+<h1>Problem 2: Mars rover sample collection</h1>
+<h2>1. Domain modeling</h2>
+<p><code>Domain.pddl</code> declares only <code>:strips</code> and <code>:typing</code>. Types are rover, location,
+rock, bay, and drill. Predicates record rover, rock and drill locations,
+directed connectivity, bay ownership and contents, bay emptiness, rock type,
+and permanent drill possession. <code>move</code>, <code>pick-drill</code>, <code>collect-soft</code>,
+<code>collect-hard</code>, and <code>deposit</code> implement the four conceptual actions; collect
+is split into two STRIPS actions to avoid disjunctive or negative preconditions.</p>
+<p>Collection requires co-location and an empty owned bay, removes the rock's
+ground location, and fills that bay. Hard collection additionally requires
+the drill. Deposit is allowed at the current location, including locations
+other than Base, as the brief permits. Pickup permanently records possession
+of the drill; it does not consume a rock storage bay. Negative <strong>effects</strong>
+are normal STRIPS deletes; no negative <strong>preconditions</strong> are used.</p>
+<h2>2. Problem modeling</h2>
+<p><code>Problem.pddl</code> contains Curiosity, two empty bays, Drill1 at SiteE, and the
+five rocks at their specified sites. Each two-way connection is represented
+by two facts. Only SiteC -&gt; SiteD is added for the downhill route.</p>
+<p><code>Problem_extended.pddl</code> adds soft Rock6 at SiteE and hard Rock7 at SiteF.
+Both Base -&gt; SiteB and SiteB -&gt; Base are absent. Goals require all rocks
+and the rover at Base; both bays must also be empty. Explicit empty-bay
+goals in the extended problem are consistent with the base mission and
+already follow from all rocks being on the ground at Base.</p>
+<h2>3. Search configurations and measured results</h2>
+<p>Pyperplan 2.1 parses and grounds the submitted PDDL files. Grounded operators
+are sorted by name, and subprocesses fix <code>PYTHONHASHSEED=0</code> for repeatable
+tie-breaking. Every action has unit cost.</p>
+<ul>
+<li>Satisficing: greedy best-first search with the FF delete-relaxation heuristic.</li>
+<li>Optimal: A* with the admissible rover lower bound implemented in
+<code>lower_bound.py</code>. No preferred-operator pruning or weighted A* is used.</li>
+</ul>
+<h3>Why the A* heuristic is admissible</h3>
+<p>The handling bound counts two actions per undelivered ground rock (collect,
+deposit), one per carried rock (deposit), and one drill pickup when an
+undelivered hard rock requires it. These handling actions are necessary.</p>
+<p>For movement, a cached dynamic program computes the shortest directed route
+from the current location through every remaining ground-rock site and the
+drill site when needed, ending at Base. It ignores storage capacity and
+ordering constraints. Any real completion visits these sites, so this is
+a movement lower bound. A second bound is the ceiling of half the sum of
+the shortest distances to Base of all undelivered rocks, with carried rocks
+starting at the rover. Each move transports at most two rocks by one edge.</p>
+<p>The heuristic adds the handling bound to the <strong>maximum</strong> of these movement
+bounds. Handling and movement use disjoint action types. Hence the total
+never exceeds the true remaining action count and is zero at the goal.
+Pyperplan's A* reopens states when a cheaper path is found, so consistency
+is not needed for the optimality guarantee.</p>
+<h3>Results</h3>
+<p>These are measured run results, not estimated runtimes. Planning wall time
+includes parsing, grounding, and heuristic setup but excludes validation and
+file writing. Search time excludes setup. Node counts follow Pyperplan's
+convention and include the popped goal node. Plan length and total number
+of executed actions are identical here because each plan is sequential.</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Search</th>
+<th>Plan length / total actions</th>
+<th>Nodes expanded</th>
+<th>Search time (s)</th>
+<th>Planning time (s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>original</td>
+<td>gbfs</td>
+<td>30</td>
+<td>45</td>
+<td>0.020273</td>
+<td>0.033665</td>
+</tr>
+<tr>
+<td>original</td>
+<td>astar</td>
+<td>25</td>
+<td>1327</td>
+<td>0.045725</td>
+<td>0.058840</td>
+</tr>
+<tr>
+<td>extended</td>
+<td>gbfs</td>
+<td>44</td>
+<td>91</td>
+<td>0.059156</td>
+<td>0.073519</td>
+</tr>
+<tr>
+<td>extended</td>
+<td>astar</td>
+<td>40</td>
+<td>153190</td>
+<td>8.133757</td>
+<td>8.147261</td>
+</tr>
+</tbody>
+</table>
+<h3>Complete action sequences</h3>
+<p>Each sequence below comes directly from the generated <code>.plan</code> file.
+The corresponding <code>.json</code> files contain timings, action counts, and goals.</p>
+<h4>Original / gbfs</h4>
+<pre><code class="language-text">01. (move curiosity base sitea)
+02. (collect-soft curiosity rock1 bay1 sitea)
+03. (move curiosity sitea base)
+04. (deposit curiosity rock1 bay1 base)
+05. (move curiosity base siteb)
+06. (collect-soft curiosity rock2 bay1 siteb)
+07. (move curiosity siteb base)
+08. (deposit curiosity rock2 bay1 base)
+09. (move curiosity base sitea)
+10. (move curiosity sitea sitec)
+11. (move curiosity sitec sitee)
+12. (pick-drill curiosity drill1 sitee)
+13. (move curiosity sitee sitec)
+14. (collect-hard curiosity rock3 bay1 sitec)
+15. (move curiosity sitec sited)
+16. (collect-soft curiosity rock4 bay2 sited)
+17. (move curiosity sited siteb)
+18. (move curiosity siteb base)
+19. (deposit curiosity rock3 bay1 base)
+20. (deposit curiosity rock4 bay2 base)
+21. (move curiosity base sitea)
+22. (move curiosity sitea sitec)
+23. (move curiosity sitec sitee)
+24. (move curiosity sitee sitef)
+25. (collect-hard curiosity rock5 bay1 sitef)
+26. (move curiosity sitef sitee)
+27. (move curiosity sitee sitec)
+28. (move curiosity sitec sitea)
+29. (move curiosity sitea base)
+30. (deposit curiosity rock5 bay1 base)
+</code></pre>
+<h4>Original / astar</h4>
+<pre><code class="language-text">01. (move curiosity base siteb)
+02. (collect-soft curiosity rock2 bay1 siteb)
+03. (move curiosity siteb sited)
+04. (collect-soft curiosity rock4 bay2 sited)
+05. (move curiosity sited siteb)
+06. (move curiosity siteb base)
+07. (deposit curiosity rock2 bay1 base)
+08. (deposit curiosity rock4 bay2 base)
+09. (move curiosity base sitea)
+10. (move curiosity sitea sitec)
+11. (move curiosity sitec sitee)
+12. (pick-drill curiosity drill1 sitee)
+13. (move curiosity sitee sitef)
+14. (collect-hard curiosity rock5 bay1 sitef)
+15. (move curiosity sitef sitee)
+16. (move curiosity sitee sitec)
+17. (collect-hard curiosity rock3 bay2 sitec)
+18. (move curiosity sitec sitea)
+19. (move curiosity sitea base)
+20. (deposit curiosity rock3 bay2 base)
+21. (deposit curiosity rock5 bay1 base)
+22. (move curiosity base sitea)
+23. (collect-soft curiosity rock1 bay1 sitea)
+24. (move curiosity sitea base)
+25. (deposit curiosity rock1 bay1 base)
+</code></pre>
+<h4>Extended / gbfs</h4>
+<pre><code class="language-text">01. (move curiosity base sitea)
+02. (collect-soft curiosity rock1 bay1 sitea)
+03. (move curiosity sitea base)
+04. (deposit curiosity rock1 bay1 base)
+05. (move curiosity base sitea)
+06. (move curiosity sitea sitec)
+07. (move curiosity sitec sitee)
+08. (pick-drill curiosity drill1 sitee)
+09. (collect-soft curiosity rock6 bay1 sitee)
+10. (move curiosity sitee sitec)
+11. (move curiosity sitec sitea)
+12. (move curiosity sitea base)
+13. (deposit curiosity rock6 bay1 base)
+14. (move curiosity base sitea)
+15. (move curiosity sitea sitec)
+16. (collect-hard curiosity rock3 bay1 sitec)
+17. (move curiosity sitec sitea)
+18. (move curiosity sitea base)
+19. (deposit curiosity rock3 bay1 base)
+20. (move curiosity base sitea)
+21. (move curiosity sitea sitec)
+22. (move curiosity sitec sited)
+23. (move curiosity sited siteb)
+24. (collect-soft curiosity rock2 bay1 siteb)
+25. (move curiosity siteb sited)
+26. (collect-soft curiosity rock4 bay2 sited)
+27. (move curiosity sited sitee)
+28. (move curiosity sitee sitec)
+29. (move curiosity sitec sitea)
+30. (move curiosity sitea base)
+31. (deposit curiosity rock2 bay1 base)
+32. (deposit curiosity rock4 bay2 base)
+33. (move curiosity base sitea)
+34. (move curiosity sitea sitec)
+35. (move curiosity sitec sitee)
+36. (move curiosity sitee sitef)
+37. (collect-hard curiosity rock5 bay1 sitef)
+38. (collect-hard curiosity rock7 bay2 sitef)
+39. (move curiosity sitef sitee)
+40. (move curiosity sitee sitec)
+41. (move curiosity sitec sitea)
+42. (move curiosity sitea base)
+43. (deposit curiosity rock5 bay1 base)
+44. (deposit curiosity rock7 bay2 base)
+</code></pre>
+<h4>Extended / astar</h4>
+<pre><code class="language-text">01. (move curiosity base sitea)
+02. (move curiosity sitea sitec)
+03. (move curiosity sitec sited)
+04. (collect-soft curiosity rock4 bay1 sited)
+05. (move curiosity sited siteb)
+06. (collect-soft curiosity rock2 bay2 siteb)
+07. (move curiosity siteb sited)
+08. (move curiosity sited sitee)
+09. (pick-drill curiosity drill1 sitee)
+10. (move curiosity sitee sitec)
+11. (move curiosity sitec sitea)
+12. (move curiosity sitea base)
+13. (deposit curiosity rock2 bay2 base)
+14. (deposit curiosity rock4 bay1 base)
+15. (move curiosity base sitea)
+16. (move curiosity sitea sitec)
+17. (move curiosity sitec sitee)
+18. (move curiosity sitee sitef)
+19. (collect-hard curiosity rock5 bay1 sitef)
+20. (collect-hard curiosity rock7 bay2 sitef)
+21. (move curiosity sitef sitee)
+22. (move curiosity sitee sitec)
+23. (move curiosity sitec sitea)
+24. (move curiosity sitea base)
+25. (deposit curiosity rock5 bay1 base)
+26. (deposit curiosity rock7 bay2 base)
+27. (move curiosity base sitea)
+28. (move curiosity sitea sitec)
+29. (move curiosity sitec sitee)
+30. (collect-soft curiosity rock6 bay1 sitee)
+31. (move curiosity sitee sitec)
+32. (collect-hard curiosity rock3 bay2 sitec)
+33. (move curiosity sitec sitea)
+34. (move curiosity sitea base)
+35. (deposit curiosity rock3 bay2 base)
+36. (deposit curiosity rock6 bay1 base)
+37. (move curiosity base sitea)
+38. (collect-soft curiosity rock1 bay1 sitea)
+39. (move curiosity sitea base)
+40. (deposit curiosity rock1 bay1 base)
+</code></pre>
+<h2>4. Goal verification</h2>
+<p>Every plan was replayed using the full grounded PDDL preconditions and
+effects, with static facts and all operators retained. A separate simulator
+implements the rover's movement, pickup, collection, and deposit rules.
+The two final states must agree exactly. At every step it checks that the
+rover has one location, each rock has one location or bay, each bay holds
+at most one rock, and empty flags match bay contents. Preconditions also
+check route direction, ownership, co-location, rock type, and drill possession.</p>
+<p>All four plans passed both replays. The <code>.trace.txt</code> files show the dynamic
+state after every action. The original plans finish with Rock1-Rock5 at Base;
+the extended plans finish with Rock1-Rock7 at Base. Curiosity is at Base and
+Bay1 and Bay2 are empty in every final state. The drill remains carried.
+VAL was not used; validation was performed by the two described simulators.</p>
+<h2>5. Extended scenario</h2>
+<p>The storm removes only the Base-SiteB route. SiteB remains reachable through
+SiteD. The optimal plan reaches SiteD by Base -&gt; SiteA -&gt; SiteC -&gt; SiteD,
+then reaches SiteB from SiteD. On returning, it travels SiteB -&gt; SiteD -&gt;
+SiteE -&gt; SiteC -&gt; SiteA -&gt; Base. It never uses the closed route or the
+forbidden direct SiteD -&gt; SiteC move.</p>
+<h2>6. Plan analysis</h2>
+<p>The original greedy plan takes 30 actions while A* takes 25. Both perform
+five collections, five deposits, and one drill pickup; the difference is
+19 versus 14 moves. The greedy heuristic chooses locally useful deliveries
+and creates extra travel. The extended plans take 44 and 40 actions, with
+29 and 25 moves respectively; both use seven collections, seven deposits,
+and one pickup. The extra rocks and route closure increase required travel.</p>
+<p>In the original optimal plan, Rock2 and Rock4 share the first return trip.
+The rover then picks up the drill at <strong>step 12</strong>, before collecting Rock5
+and Rock3 into the two bays. These are returned together. Rock1 is delivered
+on the final short trip. Every hard-rock collection follows drill pickup.</p>
+<p>In the extended optimal plan, Rock4 and Rock2 share the first return trip.
+The rover picks up the drill at <strong>step 9</strong> while carrying them back, so later
+hard-rock collections are enabled. Rock5 and Rock7 share the next trip from
+SiteF, followed by Rock6 and Rock3, then Rock1. The directed SiteC -&gt; SiteD
+slope is used at <strong>step 3</strong>. Both bays are used whenever a useful pair is
+available. These are particular optimal plans; another optimal sequence
+may deliver rocks or choose bays in a different order.</p>
+<h2>Planner reference</h2>
+<p><a href="https://github.com/aibasel/pyperplan">Pyperplan source and usage</a> documents
+the STRIPS planner. This submission uses the installed <strong>2.1</strong> API; its
+internal search registry calls greedy search <code>gbf</code>, while our wrapper uses
+the clearer argument <code>--search gbfs</code>.</p>
+<h1>Problem 3: Royal archive access verification</h1>
+<h2>1. Knowledge representation</h2>
+<p>Constants are <code>mira</code>, <code>scroll_7</code>, and <code>royal_archive</code>. Variables x,y denote
+people or records as appropriate in this single-sorted FOL encoding.</p>
+<table>
+<thead>
+<tr>
+<th>Predicate</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Archivist(x)</td>
+<td>x is an archivist</td>
+</tr>
+<tr>
+<td>Verifies(x,r)</td>
+<td>x verifies record r</td>
+</tr>
+<tr>
+<td>Trusted(x)</td>
+<td>x is trusted</td>
+</tr>
+<tr>
+<td>Access(x,r)</td>
+<td>x has access to r</td>
+</tr>
+<tr>
+<td>Sealed(r)</td>
+<td>r is sealed</td>
+</tr>
+<tr>
+<td>Permitted(x,r)</td>
+<td>x may inspect r</td>
+</tr>
+<tr>
+<td>Inspects(x,r)</td>
+<td>x actually inspects r</td>
+</tr>
+<tr>
+<td>FindsMark(x,r)</td>
+<td>x finds a hidden mark in r</td>
+</tr>
+<tr>
+<td>Stored(r,a)</td>
+<td>r is stored in archive a</td>
+</tr>
+</tbody>
+</table>
+<p>The formulas are:</p>
+<ol>
+<li><code>forall x,r: (Archivist(x) and Verifies(x,r)) -&gt; Trusted(x)</code>.</li>
+<li><code>forall x,r: (Trusted(x) and Access(x,r) and Sealed(r)) -&gt; Permitted(x,r)</code>.</li>
+<li><code>forall x,r: (Inspects(x,r) and FindsMark(x,r)) -&gt; Verifies(x,r)</code>.</li>
+<li><code>forall r: Stored(r,royal_archive) -&gt; Sealed(r)</code>.</li>
+<li><code>Stored(scroll_7,royal_archive)</code>.</li>
+<li><code>Access(mira,scroll_7)</code>.</li>
+<li><code>Inspects(mira,scroll_7) and FindsMark(mira,scroll_7)</code>.</li>
+<li><code>Archivist(mira)</code>.</li>
+</ol>
+<p><code>Permitted</code> and <code>Inspects</code> are different predicates. Permission does not
+imply that an inspection actually occurred.</p>
+<h2>2. Negate the goal</h2>
+<p>The goal is <code>Trusted(mira)</code>. Add <code>not Trusted(mira)</code> to the knowledge base.
+The program does not add the positive goal as a fact.</p>
+<h2>3. Conversion to clause form</h2>
+<p>The program represents formulas as terms and performs each transformation.
+Implications become <code>not antecedent or consequent</code>. De Morgan's laws move
+negations to predicates. For example, the first rule becomes</p>
+<p><code>forall x,r: not Archivist(x) or not Verifies(x,r) or Trusted(x)</code>.</p>
+<p>Bound variables are renamed freshly for each scope. Clauses use distinct
+variables across rules, and each resolution parent is copied separately
+to standardize variables apart again. Variables printed as A,B in different
+clauses are local to their clauses, not shared across them.</p>
+<p>There are no existential quantifiers, so Skolemization introduces no new
+symbols. Universal quantifiers are omitted in clause form. Disjunction is
+distributed over conjunction when needed; the conjunction of the two
+ground facts in formula 7 produces two unit clauses.</p>
+<p>All variables in the following clauses are universally quantified:</p>
+<table>
+<thead>
+<tr>
+<th>Clause</th>
+<th>Literals</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C1</td>
+<td>not Archivist(x1) or not Verifies(x1,r1) or Trusted(x1)</td>
+</tr>
+<tr>
+<td>C2</td>
+<td>not Trusted(x2) or not Access(x2,r2) or not Sealed(r2) or Permitted(x2,r2)</td>
+</tr>
+<tr>
+<td>C3</td>
+<td>not Inspects(x3,r3) or not FindsMark(x3,r3) or Verifies(x3,r3)</td>
+</tr>
+<tr>
+<td>C4</td>
+<td>not Stored(r4,royal_archive) or Sealed(r4)</td>
+</tr>
+<tr>
+<td>C5</td>
+<td>Stored(scroll_7,royal_archive)</td>
+</tr>
+<tr>
+<td>C6</td>
+<td>Access(mira,scroll_7)</td>
+</tr>
+<tr>
+<td>C7</td>
+<td>Inspects(mira,scroll_7)</td>
+</tr>
+<tr>
+<td>C8</td>
+<td>FindsMark(mira,scroll_7)</td>
+</tr>
+<tr>
+<td>C9</td>
+<td>Archivist(mira)</td>
+</tr>
+<tr>
+<td>C10</td>
+<td>not Trusted(mira)</td>
+</tr>
+</tbody>
+</table>
+<h2>4. Prolog implementation</h2>
+<p><code>royal_archive_access.pl</code> contains the required eight labeled sections.
+<code>main/0</code> prints the formulas, transformation stages, clauses, and proof.
+<code>resolve/5</code> selects complementary literals, performs unification with an
+occurs check, and returns the remaining literals. Set-of-support resolution
+starts from the negated goal and prefers shorter new resolvents. This is a
+procedure for the supplied knowledge base, not a claim of a complete
+general-purpose first-order theorem prover.</p>
+<h2>5. Resolution refutation</h2>
+<p>The executed proof produces the following resolvents in order. Clause
+variables are renamed below for readability; literal order is immaterial.</p>
+<table>
+<thead>
+<tr>
+<th>New clause</th>
+<th>Parents</th>
+<th>Unification</th>
+<th>Resolvent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C11</td>
+<td>C1, C10</td>
+<td>x1=mira</td>
+<td>not Archivist(mira) or not Verifies(mira,r1)</td>
+</tr>
+<tr>
+<td>C12</td>
+<td>C9, C11</td>
+<td>ground Archivist literal</td>
+<td>not Verifies(mira,r1)</td>
+</tr>
+<tr>
+<td>C13</td>
+<td>C3, C12</td>
+<td>x3=mira, r3=r1</td>
+<td>not Inspects(mira,r1) or not FindsMark(mira,r1)</td>
+</tr>
+<tr>
+<td>C14</td>
+<td>C7, C13</td>
+<td>r1=scroll_7</td>
+<td>not FindsMark(mira,scroll_7)</td>
+</tr>
+<tr>
+<td>C15</td>
+<td>C8, C14</td>
+<td>identical ground mark literals</td>
+<td>[]</td>
+</tr>
+</tbody>
+</table>
+<p>C15 is the empty clause, a contradiction. Therefore the original knowledge
+base entails <code>Trusted(mira)</code>. The substantive chain is that the observed
+inspection and mark establish verification, and verification plus archivist
+status establish trust. Rules about sealing, access and permission are not
+needed for this conclusion.</p>
+<h2>6. Proof verification</h2>
+<p>The saved <code>outputs/proof_output.txt</code> is actual SWI-Prolog output. It ends
+with <code>C15 = []</code>, the verified conclusion, and a passing self-test message.
+The program replays every recorded resolution step against its parents.
+Self-tests check preservation of repeated variables in CNF, ordinary and
+occurs-check unification, absence of an assumed positive goal, and failure
+to refute after separately removing the inspection, mark, or archivist fact.</p>
+<p>Run manually from the repository root:</p>
+<pre><code class="language-powershell">swipl -q -s problem3/royal_archive_access.pl -g main -t halt
+</code></pre>
+<p>Use <code>screenshots/README.md</code> to capture genuine execution screenshots.</p>
+<h2>Runtime reference</h2>
+<p><a href="https://www.swi-prolog.org/download/stable">SWI-Prolog downloads</a> provides
+the runtime. The verified run used SWI-Prolog version 10.0.2 for x64-win64.</p>
+</body></html>

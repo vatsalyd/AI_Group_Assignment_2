@@ -1,0 +1,36 @@
+<!doctype html><html lang="en"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>Problem 1: N=20000</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:1120px;margin:36px auto;padding:0 24px;color:#182333}
+h1,h2,h3,h4{line-height:1.25}h1{border-bottom:2px solid #284c66;padding-bottom:12px}h2{margin-top:36px}
+table{border-collapse:collapse;width:100%;font-size:13px;margin:20px 0}td,th{border:1px solid #b9c6d2;padding:8px;text-align:left}
+th{background:#edf3f7}pre{background:#f1f4f7;padding:18px;white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.5 Consolas,monospace}
+code{font-size:.9em}img{max-width:100%}a{color:#175d91}.source{background:#eef4f7;padding:12px}
+@media print{body{margin:0;font-size:10pt;max-width:none}h2{break-after:avoid}tr,img{break-inside:avoid}pre{font-size:8pt}}
+</style><body><h1>Problem 1: N=20000</h1><p class="source"><strong>Saved-output view</strong> from a verified run; not a live terminal.<br>Source: problem1/outputs/run_output.txt<br>Re-run: <code>python problem1/run_analysis.py</code></p><pre>Weather counts: {&#x27;Hot&#x27;: 10068, &#x27;Mild&#x27;: 5956, &#x27;Cold&#x27;: 3976}
+Weather frequencies: {&#x27;Hot&#x27;: 0.5034, &#x27;Mild&#x27;: 0.2978, &#x27;Cold&#x27;: 0.1988}
+Weather / occupancy counts:
+  Hot  High: 5584
+  Hot  Low : 4484
+  Mild High: 3331
+  Mild Low : 2625
+  Cold High: 2198
+  Cold Low : 1778
+AC CPT: W O | Expert(On) MLE(On) BDeu(On)
+  Hot  High | 0.900000 0.907772 0.907651
+  Hot  Low  | 0.600000 0.604817 0.604778
+  Mild High | 0.400000 0.398079 0.398130
+  Mild Low  | 0.150000 0.139429 0.139657
+  Cold High | 0.100000 0.089627 0.089938
+  Cold Low  | 0.050000 0.042745 0.043173
+Query | Expert | MLE | Bayesian | |Diff| MLE | |Diff| Bayesian
+Q1 | 0.580631038 | 0.580005495 | 0.579967785 | 0.000625542 | 0.000663253
+Q2 | 0.706265750 | 0.710105206 | 0.709960033 | 0.003839456 | 0.003694283
+Q3 | 0.640198500 | 0.640395268 | 0.640242476 | 0.000196768 | 0.000043976
+Q4 | 0.484250000 | 0.475909815 | 0.476011086 | 0.008340185 | 0.008238914
+Q5 | 0.608188078 | 0.616316507 | 0.616126533 | 0.008128428 | 0.007938454
+Q6 | 0.692866681 | 0.698532051 | 0.698437440 | 0.005665370 | 0.005570758
+Q7 | 0.649899303 | 0.653660835 | 0.653595220 | 0.003761532 | 0.003695917
+MLE mean absolute difference: 0.004365326
+BDeu mean absolute difference: 0.004263651
+Evidence counts Q1-Q7: [20000, 10068, 5892, 2198, 11605, 11605, 8533]
+</pre></body></html>

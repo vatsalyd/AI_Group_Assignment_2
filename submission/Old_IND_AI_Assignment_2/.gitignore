@@ -1,0 +1,11 @@
+.tools/
+tools/vendor/
+tools/swipl/
+tools/7zip/
+tools/*.exe
+.venv/
+__pycache__/
+*.pyc
+*.soln
+tmp/
+submission/*.zip

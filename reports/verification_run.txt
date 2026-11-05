@@ -125,9 +125,9 @@ Goal reached. Start extraction of solution.
     "collect-hard": 2
   },
   "nodes_expanded_including_goal": 45,
-  "search_wall_seconds": 0.02027259999886155,
+  "search_wall_seconds": 0.02114419999998063,
   "search_cpu_seconds": 0.03125,
-  "planning_wall_seconds": 0.03366539999842644,
+  "planning_wall_seconds": 0.059748100000433624,
   "grounded_operators": 162,
   "validated": true,
   "goal_facts": [
@@ -219,9 +219,9 @@ Goal reached. Start extraction of solution.
     "collect-hard": 2
   },
   "nodes_expanded_including_goal": 1327,
-  "search_wall_seconds": 0.04572530003497377,
-  "search_cpu_seconds": 0.046875,
-  "planning_wall_seconds": 0.058839600009378046,
+  "search_wall_seconds": 0.04602029995294288,
+  "search_cpu_seconds": 0.03125,
+  "planning_wall_seconds": 0.06303659995319322,
   "grounded_operators": 162,
   "validated": true,
   "goal_facts": [
@@ -308,9 +308,9 @@ Goal reached. Start extraction of solution.
     "collect-hard": 3
   },
   "nodes_expanded_including_goal": 91,
-  "search_wall_seconds": 0.05915619997540489,
+  "search_wall_seconds": 0.06158709997544065,
   "search_cpu_seconds": 0.0625,
-  "planning_wall_seconds": 0.07351949997246265,
+  "planning_wall_seconds": 0.09521090000635013,
   "grounded_operators": 216,
   "validated": true,
   "goal_facts": [
@@ -422,9 +422,9 @@ Goal reached. Start extraction of solution.
     "collect-hard": 3
   },
   "nodes_expanded_including_goal": 153190,
-  "search_wall_seconds": 8.133757400035392,
-  "search_cpu_seconds": 8.109375,
-  "planning_wall_seconds": 8.147260700003244,
+  "search_wall_seconds": 7.0176857999758795,
+  "search_cpu_seconds": 7.03125,
+  "planning_wall_seconds": 7.035977700026706,
   "grounded_operators": 216,
   "validated": true,
   "goal_facts": [
@@ -620,7 +620,7 @@ test_routes_capacity_and_drill (test_planning.PlanningTests.test_routes_capacity
 test_saved_plans_with_two_simulators (test_planning.PlanningTests.test_saved_plans_with_two_simulators) ... ok
 
 ----------------------------------------------------------------------
-Ran 7 tests in 0.174s
+Ran 7 tests in 0.246s
 
 OK
 

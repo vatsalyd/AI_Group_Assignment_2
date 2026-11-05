@@ -1,0 +1,18 @@
+{
+  "included_files": 90,
+  "missing_screenshots": [
+    "problem1_queries.png",
+    "problem1_500.png",
+    "problem1_5000.png",
+    "problem1_20000.png",
+    "problem1_network.png",
+    "problem1_comparison.png",
+    "problem2_original_gbfs.png",
+    "problem2_original_astar.png",
+    "problem2_extended_gbfs.png",
+    "problem2_extended_astar.png",
+    "problem3_proof.png"
+  ],
+  "verification": "ALL RUNS AND CHECKS PASSED",
+  "screenshot_provenance": "See screenshots/CAPTURE_MANIFEST.md if captures are included"
+}

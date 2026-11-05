@@ -1,0 +1,169 @@
+[
+  {
+    "node": "W",
+    "parents": {},
+    "probabilities": {
+      "Hot": 0.5,
+      "Mild": 0.3,
+      "Cold": 0.2
+    }
+  },
+  {
+    "node": "D",
+    "parents": {},
+    "probabilities": {
+      "Weekday": 0.7,
+      "Weekend": 0.3
+    }
+  },
+  {
+    "node": "O",
+    "parents": {
+      "D": "Weekday"
+    },
+    "probabilities": {
+      "High": 0.45,
+      "Low": 0.55
+    }
+  },
+  {
+    "node": "O",
+    "parents": {
+      "D": "Weekend"
+    },
+    "probabilities": {
+      "High": 0.8,
+      "Low": 0.19999999999999996
+    }
+  },
+  {
+    "node": "A",
+    "parents": {
+      "W": "Hot",
+      "O": "High"
+    },
+    "probabilities": {
+      "On": 0.9,
+      "Off": 0.09999999999999998
+    }
+  },
+  {
+    "node": "A",
+    "parents": {
+      "W": "Hot",
+      "O": "Low"
+    },
+    "probabilities": {
+      "On": 0.6,
+      "Off": 0.4
+    }
+  },
+  {
+    "node": "A",
+    "parents": {
+      "W": "Mild",
+      "O": "High"
+    },
+    "probabilities": {
+      "On": 0.4,
+      "Off": 0.6
+    }
+  },
+  {
+    "node": "A",
+    "parents": {
+      "W": "Mild",
+      "O": "Low"
+    },
+    "probabilities": {
+      "On": 0.15,
+      "Off": 0.85
+    }
+  },
+  {
+    "node": "A",
+    "parents": {
+      "W": "Cold",
+      "O": "High"
+    },
+    "probabilities": {
+      "On": 0.1,
+      "Off": 0.9
+    }
+  },
+  {
+    "node": "A",
+    "parents": {
+      "W": "Cold",
+      "O": "Low"
+    },
+    "probabilities": {
+      "On": 0.05,
+      "Off": 0.95
+    }
+  },
+  {
+    "node": "L",
+    "parents": {
+      "O": "High"
+    },
+    "probabilities": {
+      "Heavy": 0.75,
+      "Light": 0.25
+    }
+  },
+  {
+    "node": "L",
+    "parents": {
+      "O": "Low"
+    },
+    "probabilities": {
+      "Heavy": 0.35,
+      "Light": 0.65
+    }
+  },
+  {
+    "node": "E",
+    "parents": {
+      "A": "On",
+      "L": "Heavy"
+    },
+    "probabilities": {
+      "High": 0.92,
+      "Low": 0.07999999999999996
+    }
+  },
+  {
+    "node": "E",
+    "parents": {
+      "A": "On",
+      "L": "Light"
+    },
+    "probabilities": {
+      "High": 0.68,
+      "Low": 0.31999999999999995
+    }
+  },
+  {
+    "node": "E",
+    "parents": {
+      "A": "Off",
+      "L": "Heavy"
+    },
+    "probabilities": {
+      "High": 0.55,
+      "Low": 0.44999999999999996
+    }
+  },
+  {
+    "node": "E",
+    "parents": {
+      "A": "Off",
+      "L": "Light"
+    },
+    "probabilities": {
+      "High": 0.12,
+      "Low": 0.88
+    }
+  }
+]
