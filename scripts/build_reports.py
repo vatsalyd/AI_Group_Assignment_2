@@ -93,9 +93,41 @@ For O=High this is `0.4425 + 0.4175*a`; for O=Low it is
             manual.append((w, o, f'{p_w*p_o:.6f}', f'{g:.8f}', f'{p_w*p_o*g:.10f}'))
     sections += [table(['W', 'O', 'P(w)P(o)', 'g(w,o)', 'Contribution'], manual),
                  '''Adding these contributions gives **0.5806310375**, matching exact code
-inference to floating-point precision.
+inference to floating-point precision.''']
+    handwritten_pages = [REPORTS / 'handwritten' / f'q1_page_{page:02}.jpeg' for page in (1, 2)]
+    if all(page.is_file() for page in handwritten_pages):
+        sections += ['''### Handwritten Q1 calculation
 
-## B. Conditional independence
+The following two photographs are the supplied handwritten working, preserved
+unchanged and shown in calculation order.
+
+![Handwritten Q1, page 1: setup and occupancy](handwritten/q1_page_01.jpeg)
+
+![Handwritten Q1, page 2: joint probabilities and energy](handwritten/q1_page_02.jpeg)
+
+The handwritten final answer, approximately 0.58, agrees with the exact result
+rounded to two decimal places. Correct these intermediate values when reading
+the handwritten pages:
+
+- P(O=Low) is **0.445**. The first page initially writes 0.455, then gives 0.445
+  correctly in the repeated calculation below.
+- P(AC=On given O=Low) is **0.355**, and its complement is **0.645**.
+- Keep occupancy probabilities **0.555** and **0.445** throughout the joint sum.
+  The rounded joint values 0.30, 0.18, 0.27, and 0.24 sum to 0.99; substituting
+  them gives 0.5757 rather than the exact Q1. Avoid rounding before the final step.
+
+Using full precision, the joint probabilities are:
+
+| AC | Appliance load | Joint probability |
+| --- | --- | --- |
+| On | Heavy | 0.30087875 |
+| On | Light | 0.18454625 |
+| Off | Heavy | 0.27112125 |
+| Off | Light | 0.24345375 |
+
+These sum to 1. Multiplying by 0.92, 0.68, 0.55, and 0.12 respectively and
+adding gives **0.5806310375**.''']
+    sections += ['''## B. Conditional independence
 
 1. **W is independent of D.** The simple paths W -> A <- O <- D and
    W -> A -> E <- L <- O <- D are blocked by colliders A and E respectively.
